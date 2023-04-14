@@ -1,0 +1,14 @@
+AnchorPane{
+    -fx-background-color: rgb(34, 109, 139);
+    -fx-text-fill: white;
+}
+
+Label{
+    -fx-text-fill: white;
+}
+
+#botaoEntrar{
+    -fx-background-color: rgb(255, 255, 255);
+    -fx-background-radius: 10px;
+    -fx-text-fill: rgb(34, 109, 139);
+}

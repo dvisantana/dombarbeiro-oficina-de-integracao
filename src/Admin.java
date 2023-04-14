@@ -4,6 +4,7 @@ public class Admin extends Secretario{
         nome = "Bruno";
         usuario = "admin";
         senha = "123";
+        cargo = 0;
     }
 
 }

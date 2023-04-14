@@ -3,8 +3,10 @@ public class Secretario {
     protected String nome;
     protected String usuario;
     protected String senha;
+    protected int cargo;
 
 
+    
     public String getNome() {
         return nome;
     }
@@ -22,6 +24,12 @@ public class Secretario {
     }
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+    public int getCargo() {
+        return cargo;
+    }
+    public void setCargo(int cargo) {
+        this.cargo = cargo;
     }
     
 

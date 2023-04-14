@@ -23,6 +23,9 @@ public class LoginController {
         Admin admin = new Admin();
 
         if(usuario.equals(admin.getUsuario()) && senha.equals(admin.getSenha())){
+            if(admin.cargo == 0){
+                App.csEntrarApp(0);
+            }
             System.out.println("Login realizado!");
             System.out.println("user: " + admin.getUsuario());
             System.out.println("senha: " + admin.getSenha());

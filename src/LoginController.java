@@ -1,3 +1,8 @@
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -15,20 +20,35 @@ public class LoginController {
     @FXML
     private TextField boxUsuario;
 
+    public boolean verificarLogin(String usuario, String senha){
+        try (Connection connection = ConexaoBD.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM Admin WHERE adm_login = ? AND adm_senha = ?"))
+            {
+            preparedStatement.setString(1, usuario);
+            preparedStatement.setString(2, senha);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            return resultSet.next();
+            } catch (SQLException e) {
+                e.printStackTrace();
+                return false;
+            }
+    }
+
     @FXML
     void fazerLogin(ActionEvent event) {
         String usuario = boxUsuario.getText();
         String senha = boxSenha.getText();
 
         Admin admin = new Admin();
+        LoginController loginController = new LoginController();
 
-        if(usuario.equals(admin.getUsuario()) && senha.equals(admin.getSenha())){
+        if(loginController.verificarLogin(usuario,senha)){
             if(admin.cargo == 0){
                 App.csEntrarApp(0);
             }
             System.out.println("Login realizado!");
-            System.out.println("user: " + admin.getUsuario());
-            System.out.println("senha: " + admin.getSenha());
+            // System.out.println("user: " + admin.getUsuario());
+            // System.out.println("senha: " + admin.getSenha());
         }else{
             Error();
         }

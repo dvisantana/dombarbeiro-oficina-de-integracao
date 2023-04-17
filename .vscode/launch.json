@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Conexao",
+            "request": "launch",
+            "mainClass": "Conexao",
+            "projectName": "dombarbeiro-oficina-de-integracao_239f6fd5"
+        },
+        {
+            "type": "java",
             "name": "Current File",
             "request": "launch",
             "mainClass": "${file}"

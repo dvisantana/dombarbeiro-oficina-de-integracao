@@ -16,7 +16,7 @@
       <Pane prefHeight="400.0" prefWidth="112.0" style="-fx-background-color: #563A22;">
          <children>
             <Button fx:id="botaoSair" alignment="CENTER" layoutX="12.0" layoutY="366.0" minHeight="18.0" mnemonicParsing="false" onAction="#sairApp" prefHeight="24.0" prefWidth="88.0" style="-fx-background-radius: 20; -fx-background-color: #F1D7B4; -fx-cursor: hand;" text="Sair" textAlignment="CENTER" textOverrun="WORD_ELLIPSIS" />
-            <Button fx:id="botaoMudarNome" alignment="CENTER" layoutX="12.0" layoutY="331.0" minHeight="18.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="88.0" style="-fx-background-radius: 20; -fx-background-color: #F1D7B4; -fx-cursor: hand;" text="Mudar nome" textAlignment="CENTER" textOverrun="WORD_ELLIPSIS" />
+            <Button fx:id="botaoCadastrarUsuario" alignment="CENTER" layoutX="12.0" layoutY="331.0" minHeight="18.0" mnemonicParsing="false" onAction="#cadastrarSecretario" prefHeight="24.0" prefWidth="88.0" style="-fx-background-radius: 20; -fx-background-color: #F1D7B4; -fx-cursor: hand;" text="Cadastrar" textAlignment="CENTER" textOverrun="WORD_ELLIPSIS" />
          </children>
       </Pane>
    </children>

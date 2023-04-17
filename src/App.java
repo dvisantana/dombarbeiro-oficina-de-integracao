@@ -10,7 +10,8 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 public class App extends Application {
-    //victor foi bom o cineminha ontem?
+    // victor foi bom o cineminha ontem?
+    // rikz chapandoc
     private static Scene sceneTelaLogin, sceneTelaAdmin;
     private static Stage primaryStage;
     // private static TelaAdminController mudar = new TelaAdminController();

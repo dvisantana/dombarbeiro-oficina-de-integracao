@@ -1,9 +1,9 @@
-public class Secretario {
-    
+public class Usuario{
+
     protected String nome;
     protected String usuario;
     protected String senha;
-    protected int cargo;
+    protected int tipo;
 
 
     
@@ -25,12 +25,10 @@ public class Secretario {
     public void setSenha(String senha) {
         this.senha = senha;
     }
-    public int getCargo() {
-        return cargo;
+    public int getTipo() {
+        return tipo;
     }
-    public void setCargo(int cargo) {
-        this.cargo = cargo;
+    public void setTipo(int tipo) {
+        this.tipo = tipo;
     }
-    
-
 }

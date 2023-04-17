@@ -22,7 +22,7 @@ public class LoginController {
 
     public boolean verificarLogin(String usuario, String senha){
         try (Connection connection = ConexaoBD.getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM Admin WHERE adm_login = ? AND adm_senha = ?"))
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM Usuario WHERE adm_login = ? AND adm_senha = ?"))
             {
             preparedStatement.setString(1, usuario);
             preparedStatement.setString(2, senha);
@@ -36,14 +36,14 @@ public class LoginController {
 
     @FXML
     void fazerLogin(ActionEvent event) {
-        String usuario = boxUsuario.getText();
+        String login = boxUsuario.getText();
         String senha = boxSenha.getText();
 
-        Admin admin = new Admin();
+        Usuario usuario = new Usuario();
         LoginController loginController = new LoginController();
 
-        if(loginController.verificarLogin(usuario,senha)){
-            if(admin.cargo == 0){
+        if(loginController.verificarLogin(login,senha)){
+            if(usuario.tipo == 0){
                 App.csEntrarApp(0);
             }
             System.out.println("Login realizado!");

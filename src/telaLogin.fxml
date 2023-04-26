@@ -11,16 +11,12 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.paint.Color?>
-<?import javafx.scene.paint.LinearGradient?>
-<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.shape.Circle?>
-<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LoginController">
   <children>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="205.0" prefWidth="319.0" style="-fx-background-color: #03274a;" stylesheets="@style.css" VBox.vgrow="ALWAYS">
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="205.0" prefWidth="319.0" style="-fx-background-color: #5E0B15;" stylesheets="@style.css" VBox.vgrow="ALWAYS">
       <children>
             <Label layoutX="97.0" layoutY="49.0" text="Login">
                <font>
@@ -35,7 +31,7 @@
                   <PasswordField fx:id="boxSenha" layoutY="77.0" style="-fx-background-radius: 20px;" />
                </children>
             </Group>
-            <Button id="botaoEntrar" fx:id="botaoEntrar" layoutX="102.0" layoutY="277.0" mnemonicParsing="false" onAction="#fazerLogin" prefHeight="27.0" prefWidth="84.0" style="-fx-background-radius: 20px; -fx-background-color: #f98d33; -fx-font-weight: 600;" text="LOGIN" textFill="#03274a">
+            <Button id="botaoEntrar" fx:id="botaoEntrar" layoutX="102.0" layoutY="277.0" mnemonicParsing="false" onAction="#fazerLogin" prefHeight="27.0" prefWidth="84.0" style="-fx-background-radius: 20px; -fx-background-color: #BC8034; -fx-font-weight: 600;" text="LOGIN">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -48,29 +44,6 @@
             <Circle disable="true" fill="#ff212180" layoutX="14.0" layoutY="14.0" radius="6.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" visible="false" />
             <Circle disable="true" fill="#ffb92180" layoutX="33.0" layoutY="14.0" radius="6.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" visible="false" />
             <Circle disable="true" fill="#23c63080" layoutX="52.0" layoutY="14.0" radius="6.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" visible="false" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="408.0" layoutX="301.0" layoutY="-8.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="346.0">
-               <fill>
-                  <LinearGradient endX="1.0" endY="1.0">
-                     <stops>
-                        <Stop>
-                           <color>
-                              <Color red="0.3799999952316284" green="0.5128571391105652" blue="1.0" />
-                           </color>
-                        </Stop>
-                        <Stop offset="0.006711409395973154">
-                           <color>
-                              <Color red="1.0" green="0.6012345552444458" blue="0.29629629850387573" />
-                           </color>
-                        </Stop>
-                        <Stop offset="1.0">
-                           <color>
-                              <Color red="0.9764705896377563" green="0.5529412031173706" blue="0.20000000298023224" />
-                           </color>
-                        </Stop>
-                     </stops>
-                  </LinearGradient>
-               </fill>
-            </Rectangle>
             <ImageView fitHeight="317.0" fitWidth="313.0" layoutX="318.0" layoutY="42.0">
                <image>
                   <Image url="@../../../../../../Downloads/DomBarbeiro.png" />

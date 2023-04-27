@@ -33,31 +33,29 @@
 -->
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Circle?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #EDE0C0;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TelaAdminController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #EDE0C0;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TelaAdminUsuarioController">
    <children>
-      <Label fx:id="txtNome" layoutX="119.0" layoutY="58.0" prefHeight="18.0" prefWidth="224.0" />
       <Pane prefHeight="400.0" prefWidth="120.0" style="-fx-background-color: #5E0B15;">
          <children>
             <Button alignment="BASELINE_LEFT" layoutX="15.0" layoutY="128.0" minHeight="18.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="105.0" style="-fx-background-radius: 20 0 0 20; -fx-background-color: #EDE0C0; -fx-cursor: hand;" text="Usuários" textFill="#5e0b15" textOverrun="WORD_ELLIPSIS" />
             <Button alignment="BASELINE_LEFT" layoutX="15.0" layoutY="155.0" minHeight="18.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="105.0" style="-fx-background-radius: 0; -fx-background-color: 0; -fx-cursor: hand;" text="Finanças" textFill="WHITE" textOverrun="WORD_ELLIPSIS" />
             <Button alignment="BASELINE_LEFT" layoutX="15.0" layoutY="209.0" minHeight="18.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="105.0" style="-fx-background-radius: 0; -fx-background-color: 0; -fx-cursor: hand;" text="Configurações" textFill="WHITE" textOverrun="WORD_ELLIPSIS" />
             <Button alignment="BASELINE_LEFT" layoutX="15.0" layoutY="182.0" minHeight="18.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="105.0" style="-fx-background-radius: 0; -fx-background-color: 0; -fx-cursor: hand;" text="Serviços" textFill="WHITE" textOverrun="WORD_ELLIPSIS" />
-            <Button alignment="BASELINE_LEFT" layoutX="15.0" layoutY="365.0" minHeight="18.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="105.0" style="-fx-background-radius: 0; -fx-background-color: 0 0 0 20; -fx-cursor: hand;" text="Sair" textFill="WHITE" textOverrun="WORD_ELLIPSIS" />
+            <Button fx:id="botaoSair" alignment="BASELINE_LEFT" layoutX="15.0" layoutY="365.0" minHeight="18.0" mnemonicParsing="false" onAction="#sairApp" prefHeight="24.0" prefWidth="105.0" style="-fx-background-radius: 0; -fx-background-color: 0 0 0 20; -fx-cursor: hand;" text="Sair" textFill="WHITE" textOverrun="WORD_ELLIPSIS" />
             <Circle fill="#ffffff33" layoutX="60.0" layoutY="47.0" radius="40.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
          </children>
       </Pane>
       <TextField fx:id="boxPesquisar" layoutX="146.0" layoutY="45.0" prefHeight="25.0" prefWidth="150.0" />
-      <Button fx:id="botaoPesquisar" layoutX="301.0" layoutY="45.0" mnemonicParsing="false" onAction="#listarUsuarios" text="Pesquisar" />
-      <Button fx:id="botaoCadastrarUsuario" layoutX="389.0" layoutY="47.0" mnemonicParsing="false" onAction="#cadastrarUsuario" text="Cadastrar" />
-      <Button fx:id="botaoEditarUsuario" layoutX="458.0" layoutY="47.0" mnemonicParsing="false" onAction="#editarUsuario" style="-fx-background-color: #ffffff;" text="Editar" />
-      <Button fx:id="botaoRemoverUsuario" layoutX="510.0" layoutY="46.0" mnemonicParsing="false" onAction="#removerUsuario" text="Remover" />
+      <Button fx:id="botaoPesquisar" layoutX="301.0" layoutY="45.0" mnemonicParsing="false" text="Pesquisar" />
+      <Button fx:id="botaoCadastrarUsuario" layoutX="389.0" layoutY="47.0" mnemonicParsing="false" text="Cadastrar" />
+      <Button fx:id="botaoEditarUsuario" layoutX="458.0" layoutY="47.0" mnemonicParsing="false" style="-fx-background-color: #ffffff;" text="Editar" />
+      <Button fx:id="botaoRemoverUsuario" layoutX="510.0" layoutY="46.0" mnemonicParsing="false" text="Remover" />
       <TableView fx:id="tabelaUsuario" layoutX="146.0" layoutY="89.0" prefHeight="273.0" prefWidth="368.0">
         <columns>
           <TableColumn prefWidth="75.0" text="C1" />

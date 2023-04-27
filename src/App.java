@@ -10,11 +10,9 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 public class App extends Application {
-    // victor foi bom o cineminha ontem?
-    // rikz chapandoc
-    private static Scene sceneTelaLogin, sceneTelaAdmin;
+    private static Scene sceneTelaLogin, sceneTelaAdmin, sceneTelaAdminUsuario;
     private static Stage primaryStage;
-    // private static TelaAdminController mudar = new TelaAdminController();
+
 
     public static void main(String[] args) throws Exception {
         launch(args);
@@ -24,14 +22,17 @@ public class App extends Application {
     public void start(Stage stage) throws Exception{
         FXMLLoader telaLogin = new FXMLLoader(getClass().getResource("telaLogin.fxml"));
         FXMLLoader telaAdmin = new FXMLLoader(getClass().getResource("telaAdmin.fxml"));
-
+        FXMLLoader telaAdminUsuario = new FXMLLoader(getClass().getResource("telaUsuario.fxml"));
+        
         primaryStage = stage;
 
         Parent parentTelaLogin = telaLogin.load();
         Parent parentTelaAdmin = telaAdmin.load();
+        Parent parentTelaAdminUsuario = telaAdminUsuario.load();
 
         sceneTelaLogin = new Scene(parentTelaLogin);
         sceneTelaAdmin = new Scene(parentTelaAdmin);
+        sceneTelaAdminUsuario = new Scene(parentTelaAdminUsuario);
                 
         primaryStage.setTitle("DomBarbeiro");
         primaryStage.setScene(sceneTelaLogin);
@@ -53,5 +54,8 @@ public class App extends Application {
         primaryStage.setScene(sceneTelaLogin);
     }
 
+    public static void adminAbrirUsuarios(){
+        primaryStage.setScene(sceneTelaAdminUsuario);
+    }
 
 }

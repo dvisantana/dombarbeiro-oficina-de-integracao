@@ -22,7 +22,7 @@ public class App extends Application {
     public void start(Stage stage) throws Exception{
         FXMLLoader telaLogin = new FXMLLoader(getClass().getResource("telaLogin.fxml"));
         FXMLLoader telaAdmin = new FXMLLoader(getClass().getResource("telaAdmin.fxml"));
-        FXMLLoader telaAdminUsuario = new FXMLLoader(getClass().getResource("telaUsuario.fxml"));
+        FXMLLoader telaAdminUsuario = new FXMLLoader(getClass().getResource("telaAdminUsuario.fxml"));
         
         primaryStage = stage;
 

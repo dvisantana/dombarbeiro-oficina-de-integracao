@@ -52,14 +52,15 @@
          </children>
       </Pane>
       <TextField fx:id="boxPesquisar" layoutX="146.0" layoutY="45.0" prefHeight="25.0" prefWidth="150.0" />
-      <Button fx:id="botaoPesquisar" layoutX="301.0" layoutY="45.0" mnemonicParsing="false" text="Pesquisar" />
+      <Button fx:id="botaoPesquisar" layoutX="301.0" layoutY="45.0" mnemonicParsing="false" onAction="#carregarTabela" text="Pesquisar" />
       <Button fx:id="botaoCadastrarUsuario" layoutX="389.0" layoutY="47.0" mnemonicParsing="false" text="Cadastrar" />
       <Button fx:id="botaoEditarUsuario" layoutX="458.0" layoutY="47.0" mnemonicParsing="false" style="-fx-background-color: #ffffff;" text="Editar" />
       <Button fx:id="botaoRemoverUsuario" layoutX="510.0" layoutY="46.0" mnemonicParsing="false" text="Remover" />
-      <TableView fx:id="tabelaUsuario" layoutX="146.0" layoutY="89.0" prefHeight="273.0" prefWidth="368.0">
+      <TableView fx:id="tabelaUsuario" layoutX="146.0" layoutY="89.0" prefHeight="273.0" prefWidth="427.0">
         <columns>
-          <TableColumn prefWidth="75.0" text="C1" />
-          <TableColumn prefWidth="75.0" text="C2" />
+          <TableColumn fx:id="nomeCol" prefWidth="75.0" text="Nome" />
+          <TableColumn fx:id="usuarioCol" prefWidth="75.0" text="Usuario" />
+            <TableColumn fx:id="senhaCol" prefWidth="75.0" text="Senha" />
         </columns>
       </TableView>
    </children>

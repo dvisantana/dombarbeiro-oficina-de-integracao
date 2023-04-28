@@ -38,7 +38,7 @@ public class LoginController {
         String login = boxUsuario.getText();
         String senha = boxSenha.getText();
 
-        Usuario usuario = new Usuario();
+        Usuario usuario = new Usuario("","","");
         LoginController loginController = new LoginController();
 
         if(loginController.verificarLogin(login,senha)){

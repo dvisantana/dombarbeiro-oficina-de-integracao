@@ -80,6 +80,11 @@ public class TelaAdminUsuarioController implements Initializable{
     }
 
     @FXML
+    public void abrirTelaAdmin(){
+        App.abrirAdmin();
+    }
+
+    @FXML
     public void sairApp(ActionEvent event) {
         App.csSairApp();
     }

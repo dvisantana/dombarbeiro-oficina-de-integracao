@@ -58,4 +58,8 @@ public class App extends Application {
         primaryStage.setScene(sceneTelaAdminUsuario);
     }
 
+    public static void abrirAdmin(){
+        primaryStage.setScene(sceneTelaAdmin);
+    }
+
 }

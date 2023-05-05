@@ -24,15 +24,15 @@ public class TelaAdminController {
     private Button botaoUsuario;
 
     // public void cadastrarSecretario(){
-    //     try (Connection connection = ConexaoBD.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO Admin VALUES(?,?,?)")){
-    //         preparedStatement.setString(1, "Victor");
-    //         preparedStatement.setString(2, "victor");
-    //         preparedStatement.setString(3, "1234");
-    //         int linhasAfetadas = preparedStatement.executeUpdate();
-    //         System.out.println(linhasAfetadas);
-    //     } catch (SQLException e) {
-    //         e.printStackTrace();
-    //     }
+        // try (Connection connection = ConexaoBD.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO Admin VALUES(?,?,?)")){
+        //     preparedStatement.setString(1, "Victor");
+        //     preparedStatement.setString(2, "victor");
+        //     preparedStatement.setString(3, "1234");
+        //     int linhasAfetadas = preparedStatement.executeUpdate();
+        //     System.out.println(linhasAfetadas);
+        // } catch (SQLException e) {
+        //     e.printStackTrace();
+        // }
     // }
 
     @FXML
@@ -43,6 +43,10 @@ public class TelaAdminController {
     @FXML
     public void sairApp(ActionEvent event) {
         App.csSairApp();
+    }
+
+    public static Usuario tabelaUsuarioClicked(Object object) {
+        return null;
     }
 
 }

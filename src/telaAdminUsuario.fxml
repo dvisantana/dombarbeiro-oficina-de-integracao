@@ -84,19 +84,11 @@
             </Text>
          </children>
       </Pane>
-      <Button fx:id="botaoCadastrarUsuario" layoutX="174.0" layoutY="321.0" mnemonicParsing="false" style="-fx-background-color: #5E0B15; -fx-background-radius: 5px;" text="Cadastrar" textFill="WHITE">
+      <Button fx:id="botaoEditarUsuario" layoutX="267.0" layoutY="322.0" mnemonicParsing="false" onAction="#abrirEditarUsuario" style="-fx-background-color: #5E0B15;" text="Editar" textFill="WHITE">
          <font>
             <Font name="Verdana" size="12.0" />
          </font></Button>
-      <Button fx:id="botaoEditarUsuario" layoutX="256.0" layoutY="321.0" mnemonicParsing="false" style="-fx-background-color: #5E0B15;" text="Editar" textFill="WHITE">
-         <font>
-            <Font name="Verdana" size="12.0" />
-         </font></Button>
-      <Button fx:id="botaoRemoverUsuario" layoutX="315.0" layoutY="321.0" mnemonicParsing="false" style="-fx-background-color: #5E0B15;" text="Remover" textFill="WHITE">
-         <font>
-            <Font name="Verdana" size="12.0" />
-         </font></Button>
-      <TableView fx:id="tabelaUsuario" layoutX="174.0" layoutY="113.0" prefHeight="200.0" prefWidth="368.0" style="-fx-background-color: #ffffff; -fx-background-radius: 5px;">
+      <TableView fx:id="tabelaUsuario" layoutX="174.0" layoutY="113.0" onMouseClicked="#tabelaUsuarioClicked" prefHeight="200.0" prefWidth="368.0" style="-fx-background-color: #ffffff; -fx-background-radius: 5px;">
         <columns>
           <TableColumn fx:id="nomeCol" prefWidth="75.0" text="Nome" />
           <TableColumn fx:id="usuarioCol" prefWidth="75.0" text="Usuário" />
@@ -104,11 +96,20 @@
             <TableColumn prefWidth="75.0" text="Tipo" />
         </columns>
       </TableView>
-      <Button fx:id="botaoPesquisar" layoutX="474.0" layoutY="79.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="68.0" style="-fx-background-color: #5E0B15; -fx-background-radius: 5px;" text="Enviar" textFill="WHITE">
+      <Button fx:id="botaoRemoverUsuario" layoutX="326.0" layoutY="322.0" mnemonicParsing="false" onAction="#removerUsuario" style="-fx-background-color: #5E0B15;" text="Remover" textFill="WHITE">
+         <font>
+            <Font name="Verdana" size="12.0" />
+         </font></Button>
+      <Button fx:id="botaoPesquisar" layoutX="474.0" layoutY="79.0" mnemonicParsing="false" onAction="#carregarTabela" prefHeight="24.0" prefWidth="68.0" style="-fx-background-color: #5E0B15; -fx-background-radius: 5px;" text="Enviar" textFill="WHITE">
          <font>
             <Font name="Verdana" size="12.0" />
          </font>
       </Button>
       <TextField fx:id="boxPesquisar" layoutX="174.0" layoutY="79.0" prefHeight="25.0" prefWidth="292.0" style="-fx-background-radius: 5px; -fx-background-color: #ffffff;" />
+      <Button fx:id="botaoCadastrarUsuario" layoutX="174.0" layoutY="321.0" mnemonicParsing="false" onAction="#abrirCadastroUsuario" prefHeight="24.0" prefWidth="81.0" style="-fx-background-color: #5E0B15; -fx-background-radius: 5px;" text="Cadastrar" textFill="WHITE">
+         <font>
+            <Font name="Verdana" size="12.0" />
+         </font>
+      </Button>
    </children>
 </Pane>

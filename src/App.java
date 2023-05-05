@@ -8,9 +8,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class App extends Application {
-    private static Scene sceneTelaLogin, sceneTelaAdmin, sceneTelaAdminUsuario;
+    private static Scene sceneTelaLogin, sceneTelaAdmin, sceneTelaAdminUsuario, sceneTelaCadastroUsuario;
     private static Stage primaryStage;
 
 
@@ -24,18 +25,21 @@ public class App extends Application {
         FXMLLoader telaAdmin = new FXMLLoader(getClass().getResource("telaAdmin.fxml"));
         FXMLLoader telaAdminUsuario = new FXMLLoader(getClass().getResource("telaAdminUsuario.fxml"));
         
+        
         primaryStage = stage;
 
         Parent parentTelaLogin = telaLogin.load();
         Parent parentTelaAdmin = telaAdmin.load();
         Parent parentTelaAdminUsuario = telaAdminUsuario.load();
+        
 
         sceneTelaLogin = new Scene(parentTelaLogin);
         sceneTelaAdmin = new Scene(parentTelaAdmin);
         sceneTelaAdminUsuario = new Scene(parentTelaAdminUsuario);
+        
                 
         primaryStage.setTitle("DomBarbeiro");
-        primaryStage.setScene(sceneTelaLogin);
+        primaryStage.setScene(sceneTelaAdminUsuario);
         primaryStage.show();        
     }
 

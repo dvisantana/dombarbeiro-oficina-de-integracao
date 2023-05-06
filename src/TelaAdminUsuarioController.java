@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
 
 import javax.imageio.ImageTranscoder;
 import javax.swing.JOptionPane;
+import javax.swing.text.Caret;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -74,6 +75,8 @@ public class TelaAdminUsuarioController implements Initializable{
         return editOn;
     }
 
+    private boolean procurarOn;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         carregarTabela(null);
@@ -81,6 +84,7 @@ public class TelaAdminUsuarioController implements Initializable{
     
     private ObservableList<Usuario> ListaUsuarios = FXCollections.observableArrayList();
 
+    @FXML
     public void carregarTabela(ActionEvent event){
         ListaUsuarios.clear();
 
@@ -92,13 +96,41 @@ public class TelaAdminUsuarioController implements Initializable{
         {
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            while(resultSet.next()){
-                ListaUsuarios.add(new Usuario(resultSet.getString(1), resultSet.getString(2), resultSet.getString(3)));
-                tabelaUsuario.setItems(ListaUsuarios);
+
+            if(procurarOn){
+                while(resultSet.next()){
+                    if(boxPesquisar.getText().equalsIgnoreCase(resultSet.getString(1))){
+                        ListaUsuarios.add(new Usuario(resultSet.getString(1), resultSet.getString(2), resultSet.getString(3)));
+                        tabelaUsuario.setItems(ListaUsuarios);
+                    }
+                }
+            }else{
+                while(resultSet.next()){
+                    ListaUsuarios.add(new Usuario(resultSet.getString(1), resultSet.getString(2), resultSet.getString(3)));
+                    tabelaUsuario.setItems(ListaUsuarios);
+                }
             }
+
+            // while(resultSet.next()){
+            //     ListaUsuarios.add(new Usuario(resultSet.getString(1), resultSet.getString(2), resultSet.getString(3)));
+            //     tabelaUsuario.setItems(ListaUsuarios);
+            // }
 
         } catch (SQLException e) {
             e.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void procurarTabela(ActionEvent event){
+        if(boxPesquisar.getText().equalsIgnoreCase("")){
+            procurarOn = false;
+            carregarTabela(event);
+        }else{
+            procurarOn = true;
+            carregarTabela(event);
+            boxPesquisar.setText("");
+            procurarOn = false;
         }
     }
 
@@ -122,21 +154,23 @@ public class TelaAdminUsuarioController implements Initializable{
     public void removerUsuario(){
         Usuario u = tabelaUsuarioClicked(null);
 
-        try (Connection connection = ConexaoBD.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM Usuario WHERE adm_login=?")){
-            preparedStatement.setString(1, u.getUsuario());
-            int confirm = JOptionPane.showConfirmDialog(null, "Deseja realmente remover", "Mensagem de Confirmação", JOptionPane.YES_NO_OPTION);
+        int confirm = JOptionPane.showConfirmDialog(null, "Deseja realmente remover", "Mensagem de Confirmação", JOptionPane.YES_NO_OPTION);
            
             if(confirm == 0){
-                ListaUsuarios.remove(u);
+                try (Connection connection = ConexaoBD.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM Usuario WHERE adm_login=?")){
+                    preparedStatement.setString(1, u.getUsuario());
+                    ListaUsuarios.remove(u);
+                    preparedStatement.executeUpdate();
+                    carregarTabela(null);
+                } catch (SQLException e) {
+                    JOptionPane.showMessageDialog(null, "Erro ao Remover (CONTATE O ADMINISTRADOR)","Erro",JOptionPane.ERROR_MESSAGE);
+                }
+
             } 
             else{
-                JOptionPane.showMessageDialog(null, "Erro ao Cadastrar","Erro",JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Operação Cancelada!","Aviso",JOptionPane.WARNING_MESSAGE);
             }
-            
-            preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        
     }
 
     @FXML

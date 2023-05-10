@@ -2,7 +2,6 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Spinner?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -50,30 +49,30 @@
             </Text>
          </children>
       </Pane>
-      <TableView fx:id="tabelaUsuario" layoutX="171.0" layoutY="132.0" prefHeight="200.0" prefWidth="368.0" style="-fx-background-color: #ffffff; -fx-background-radius: 5px;">
+      <TableView fx:id="tabelaServico" layoutX="171.0" layoutY="132.0" prefHeight="200.0" prefWidth="368.0" style="-fx-background-color: #ffffff; -fx-background-radius: 5px;">
         <columns>
           <TableColumn prefWidth="284.0" text="Serviço" />
           <TableColumn prefWidth="83.0" text="Valor" />
         </columns>
       </TableView>
-      <TextField fx:id="boxPesquisar" layoutX="171.0" layoutY="100.0" prefHeight="25.0" prefWidth="280.0" style="-fx-background-radius: 5px; -fx-background-color: #ffffff;" />
+      <TextField fx:id="boxServicos" layoutX="171.0" layoutY="100.0" prefHeight="25.0" prefWidth="280.0" style="-fx-background-radius: 5px; -fx-background-color: #ffffff;" />
       <Label layoutX="172.0" layoutY="82.0" text="Serviço" />
-      <Button layoutX="172.0" layoutY="340.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="80.0" style="-fx-background-color: #5E0B15; -fx-background-radius: 5px;" text="Cadastrar" textFill="WHITE">
+      <Button fx:id="botaoCadastrar" layoutX="172.0" layoutY="340.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="80.0" style="-fx-background-color: #5E0B15; -fx-background-radius: 5px;" text="Cadastrar" textFill="WHITE">
          <font>
             <Font name="Verdana" size="12.0" />
          </font>
       </Button>
-      <Spinner layoutX="457.0" layoutY="100.0" prefHeight="25.0" prefWidth="80.0" />
-      <Button layoutX="258.0" layoutY="340.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="80.0" style="-fx-background-color: #5E0B15; -fx-background-radius: 5px;" text="Editar" textFill="WHITE">
+      <Button fx:id="botaoEditar" layoutX="258.0" layoutY="340.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="80.0" style="-fx-background-color: #5E0B15; -fx-background-radius: 5px;" text="Editar" textFill="WHITE">
          <font>
             <Font name="Verdana" size="12.0" />
          </font>
       </Button>
-      <Button layoutX="344.0" layoutY="341.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="80.0" style="-fx-background-color: #5E0B15; -fx-background-radius: 5px;" text="Remover" textFill="WHITE">
+      <Button fx:id="botaoRemover" layoutX="344.0" layoutY="341.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="80.0" style="-fx-background-color: #5E0B15; -fx-background-radius: 5px;" text="Remover" textFill="WHITE">
          <font>
             <Font name="Verdana" size="12.0" />
          </font>
       </Button>
       <Label layoutX="458.0" layoutY="83.0" text="Valor" />
+      <TextField fx:id="boxValor" layoutX="465.0" layoutY="100.0" />
    </children>
 </Pane>

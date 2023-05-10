@@ -54,7 +54,7 @@
                   <Image url="@../imgs/logoImg.png" />
                </image>
             </ImageView>
-            <Button fx:id="botaoFinancas" alignment="BASELINE_LEFT" layoutX="15.0" layoutY="104.0" minHeight="18.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="105.0" style="-fx-background-radius: 0; -fx-background-color: 0; -fx-cursor: hand;" text="Finanças" textFill="WHITE" textOverrun="WORD_ELLIPSIS">
+            <Button fx:id="botaoFinancas" alignment="BASELINE_LEFT" layoutX="15.0" layoutY="104.0" minHeight="18.0" mnemonicParsing="false" onAction="#abrirTelaFinancas" prefHeight="24.0" prefWidth="105.0" style="-fx-background-radius: 0; -fx-background-color: 0; -fx-cursor: hand;" text="Finanças" textFill="WHITE" textOverrun="WORD_ELLIPSIS">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Button>

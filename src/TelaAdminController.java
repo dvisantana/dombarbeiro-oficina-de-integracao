@@ -36,12 +36,17 @@ public class TelaAdminController {
     // }
 
     @FXML
-    public void abrirTelaAdminUsuario(ActionEvent event){
+    private void abrirTelaAdminUsuario(ActionEvent event){
         App.adminAbrirUsuarios();
     }
 
     @FXML
-    public void sairApp(ActionEvent event) {
+    private void abrirTelaFinancas(ActionEvent event){
+        App.adminAbrirFinancas();
+    }
+
+    @FXML
+    private void sairApp(ActionEvent event) {
         App.csSairApp();
     }
 

@@ -226,12 +226,17 @@ public class TelaAdminUsuarioController implements Initializable{
     }
 
     @FXML
-    void abrirTelaAdmin(MouseEvent event) {
+    private void abrirTelaAdmin(MouseEvent event) {
         App.abrirAdmin();
     }
 
     @FXML
-    public void sairApp(ActionEvent event) {
+    private void abrirTelaFinancas(ActionEvent event){
+        App.adminAbrirFinancas();
+    }
+
+    @FXML
+    private void sairApp(ActionEvent event) {
         App.csSairApp();
     }
 

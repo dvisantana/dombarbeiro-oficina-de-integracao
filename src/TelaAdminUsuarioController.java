@@ -85,7 +85,7 @@ public class TelaAdminUsuarioController implements Initializable{
     private ObservableList<Usuario> ListaUsuarios = FXCollections.observableArrayList();
 
     @FXML
-    public void carregarTabela(ActionEvent event){
+    private void carregarTabela(ActionEvent event){
         ListaUsuarios.clear();
 
         nomeCol.setCellValueFactory(new PropertyValueFactory<>("nome"));

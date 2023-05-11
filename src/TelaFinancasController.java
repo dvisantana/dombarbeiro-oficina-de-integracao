@@ -1,5 +1,6 @@
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
@@ -7,24 +8,46 @@ import javafx.scene.input.MouseEvent;
 public class TelaFinancasController {
 
     @FXML
-    private TextField boxPesquisar;
+    private Button botaoCadastrar;
 
     @FXML
-    private TableView<?> tabelaUsuario;
+    private Button botaoEditar;
 
     @FXML
-    private void abrirTelaAdmin(MouseEvent event) {
-        App.abrirAdmin();
+    private Button botaoRemover;
+
+    @FXML
+    private TextField boxServicos;
+
+    @FXML
+    private TextField boxValor;
+
+    @FXML
+    private TableView<?> tabelaServico;
+
+    @FXML
+    void abrirTelaAdmin(MouseEvent event) {
+
     }
 
     @FXML
-    private void abrirTelaAdminUsuario(ActionEvent event){
-        App.adminAbrirUsuarios();
+    void abrirTelaAdminUsuario(ActionEvent event) {
+
     }
 
     @FXML
-    private void sairApp(ActionEvent event) {
-        App.csSairApp();
+    void sairApp(ActionEvent event) {
+
     }
+
+
+
+    @FXML
+    private void abrirTelaServicos(ActionEvent event) {
+        App.admAbrirServicos();
+    }
+
 
 }
+
+

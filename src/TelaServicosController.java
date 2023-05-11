@@ -1,11 +1,15 @@
+import java.net.URL;
+import java.util.ResourceBundle;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 
-public class TelaServicosController {
+public class TelaServicosController implements Initializable {
 
     @FXML
     private Button botaoCadastrar;
@@ -25,6 +29,11 @@ public class TelaServicosController {
     @FXML
     private TableView<?> tabelaServico;
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
+    }
+
     @FXML
     void abrirTelaAdmin(MouseEvent event) {
 
@@ -39,5 +48,10 @@ public class TelaServicosController {
     void sairApp(ActionEvent event) {
 
     }
+    @FXML
+    private void abrirTelaServicos(ActionEvent event) {
+        App.admAbrirServicos();
+    }
+
 
 }

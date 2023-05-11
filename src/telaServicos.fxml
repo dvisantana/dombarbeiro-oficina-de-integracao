@@ -73,6 +73,6 @@
          </font>
       </Button>
       <Label layoutX="458.0" layoutY="83.0" text="Valor" />
-      <TextField fx:id="boxValor" layoutX="465.0" layoutY="100.0" />
+      <TextField fx:id="boxValor" layoutX="458.0" layoutY="100.0" prefHeight="25.0" prefWidth="80.0" style="-fx-background-color: #ffffff; -fx-background-radius: 5px;" />
    </children>
 </Pane>

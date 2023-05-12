@@ -1,20 +1,21 @@
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
-
 import javax.swing.JOptionPane;
-import javax.swing.table.TableColumn;
-
 import javafx.collections.FXCollections;
+import javafx.scene.control.TableView;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.TableView;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 
 public class TelaServicosController implements Initializable {
@@ -29,13 +30,19 @@ public class TelaServicosController implements Initializable {
     private Button botaoRemover;
 
     @FXML
-    private TextField boxServicos;
+    private TextField boxDesc;
 
     @FXML
     private TextField boxValor;
 
     @FXML
-    private TableView<?> tabelaServico;
+    private TableColumn<Servico, Double> tableValor;
+
+    @FXML
+    private TableView<Servico> tabelaServico;
+
+    @FXML
+    private TableColumn<Servico, String> tableDesc;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -43,6 +50,7 @@ public class TelaServicosController implements Initializable {
     }
     private ObservableList<Servico> ListaServicos = FXCollections.observableArrayList();
     private static Servico servicoSelec = new Servico(null,null);
+   
     
     
     // private TableColumn<Servico, String> desc;
@@ -62,12 +70,12 @@ public class TelaServicosController implements Initializable {
         // servicoSelec = servico;
         // return(servico);
     }
-
+    private boolean procurarOn;
     public void carregarTabela(ActionEvent event){
         ListaServicos.clear();
-
-        desc.setCellValueFactory(new PropertyValueFactory<>("Descrição"));
-        valor.setCellValueFactory(new PropertyValueFactory<>("Valor"));
+        Servico s = new Servico(null, null);
+        tableDesc.setCellValueFactory(new PropertyValueFactory<>("servico"));
+        tableValor.setCellValueFactory(new PropertyValueFactory<>("valor"));
 
         try (Connection connection = ConexaoBD.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM Servico"))
         {
@@ -76,15 +84,8 @@ public class TelaServicosController implements Initializable {
 
             if(procurarOn){
                 while(resultSet.next()){
-                    if(boxPesquisar.getText().equalsIgnoreCase(resultSet.getString(1))){
-                        ListaServico.add(new Servico(resultSet.getString(1), resultSet.getString(2)));
-                        tabelaServico.setItems(ListaServico);
-                    }
-                }
-            }else{
-                while(resultSet.next()){
-                    ListaServico.add(new Servico(resultSet.getString(1), resultSet.getString(2)));
-                    tabelaServico.setItems(ListaServico);
+                    ListaServicos.add(new Servico(resultSet.getString(1), resultSet.getDouble(2)));
+                    tabelaServico.setItems(ListaServicos);
                 }
             }
 
@@ -123,40 +124,18 @@ public class TelaServicosController implements Initializable {
     @FXML
     void cadastrarServico(ActionEvent event){
         
-        Servico s = servicoSelec;
-        String servico = boxservico.getText();
-        Double valor = boxvalor.getText();
+       
+        String servico = boxDesc.getText();
+        //verificar
+        Double valor = Double.valueOf(boxValor.getText());
 
-        int tipo = 0;
-
-        // if(comboBoxTipo.getValue().equals("0 - Admin")){
-        //     tipo = 0;
-        // }else if(comboBoxTipo.getValue().equals("1 - Usuário")){
-        //     tipo = 1;
-        // }else{
-        //     System.out.println("valor");
-        // }
-        
-        try {
-            if(comboBoxTipo.getValue().equals("0 - Admin")){
-                tipo = 0;
-            }else if(comboBoxTipo.getValue().equals("1 - Usuário")){
-                tipo = 1;
-            }else{
-                tipo = 3;
-            }
-        } catch (Exception e) {
-            tipo = 3;
-            System.out.println("Erro");
-        }
-
-        if (nome.isEmpty() || servico.isEmpty() || valor.isEmpty() || tipo == 3) {
+        if (servico.isEmpty() || valor.isNaN() ) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(null);
             alert.setContentText("Preencha todos os campos!");
             alert.showAndWait();
         } else {
-            if(b==false){
+           
                 try (Connection connection = ConexaoBD.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO Servico VALUES(?,?,?,?)")){
                     preparedStatement.setString(1, servico);
                     preparedStatement.setDouble(2, valor);
@@ -169,26 +148,28 @@ public class TelaServicosController implements Initializable {
                     alert.showAndWait();
                     System.out.println("Erro ao cadastrar! Provavelmente já existe esse serviço cadastrado");
                 }
-            }else if(b==true){
-                try (Connection connection = ConexaoBD.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement("UPDATE Servico SET "
-                + "`adm_nome`=?,"
-                + "`adm_login`=?,"
-                + "`adm_valor`=?,"
-                + "`adm_tipo`= ? WHERE adm_login = '"+s.getServico()+"'")){
-                    preparedStatement.setString(1, s.getServico());
-                    preparedStatement.setString(2, valor);
-    
-                    preparedStatement.executeUpdate();
-                } catch (SQLException e) {
-                    // e.printStackTrace();
-                    System.out.println("ERRO AQUI TRUE");
-                }
-            }
             
+                //EDITAR O SERVICO
+                // try (Connection connection = ConexaoBD.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement("UPDATE Servico SET "
+                // + "`ser_nome`=?,"
+                // + "`ser_preco`=?"
+                // + "WHERE adm_login = '"+s.getServico()+"'")){
+                //     preparedStatement.setString(1, s.getServico());
+                //     preparedStatement.setString(2, valor);
+    
+                //     preparedStatement.executeUpdate();
+                // } catch (SQLException e) {
+                //     // e.printStackTrace();
+                //     System.out.println("ERRO AQUI TRUE");
+                // }
+            }   
             clean(event);
-            fecharJanela();
-        }
-
+    }
+    
+    @FXML
+    private void clean(ActionEvent event) {
+        boxDesc.setText(null);
+        boxValor.setText(null);;
     }
 
  @FXML 

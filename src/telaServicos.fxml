@@ -49,7 +49,7 @@
             </Text>
          </children>
       </Pane>
-      <TableView fx:id="tabelaServico" layoutX="172.0" layoutY="132.0" prefHeight="200.0" prefWidth="368.0" style="-fx-background-color: #ffffff; -fx-background-radius: 5px;">
+      <TableView fx:id="tabelaServico" layoutX="172.0" layoutY="132.0" onMouseClicked="#tabelaServicoClicked" prefHeight="200.0" prefWidth="368.0" style="-fx-background-color: #ffffff; -fx-background-radius: 5px;">
         <columns>
           <TableColumn fx:id="tableDesc" prefWidth="284.0" text="Serviço" />
           <TableColumn fx:id="tablelValor" prefWidth="83.0" text="Valor" />
@@ -58,7 +58,7 @@
       </TableView>
       <TextField fx:id="boxDesc" layoutX="171.0" layoutY="100.0" prefHeight="25.0" prefWidth="280.0" style="-fx-background-radius: 5px; -fx-background-color: #ffffff;" />
       <Label layoutX="172.0" layoutY="82.0" text="Serviço" />
-      <Button fx:id="botaoCadastrar" layoutX="172.0" layoutY="340.0" mnemonicParsing="false" onMouseClicked="#cadastrarServico" prefHeight="24.0" prefWidth="80.0" style="-fx-background-color: #5E0B15; -fx-background-radius: 5px;" text="Cadastrar" textFill="WHITE" fx:controller="TelaServicosController">
+      <Button fx:id="botaoCadastrar" layoutX="172.0" layoutY="340.0" mnemonicParsing="false" onMouseClicked="#cadastrarServico" prefHeight="24.0" prefWidth="80.0" style="-fx-background-color: #5E0B15; -fx-background-radius: 5px;" text="Cadastrar" textFill="WHITE">
          <font>
             <Font name="Verdana" size="12.0" />
          </font>

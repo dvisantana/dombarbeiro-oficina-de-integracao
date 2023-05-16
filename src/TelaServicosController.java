@@ -122,7 +122,7 @@ public class TelaServicosController implements Initializable {
    
 
     @FXML
-    void cadastrarServico(ActionEvent event){
+    public void cadastrarServico(ActionEvent event){
         
        
         String servico = boxDesc.getText();
@@ -170,6 +170,22 @@ public class TelaServicosController implements Initializable {
     private void clean(ActionEvent event) {
         boxDesc.setText(null);
         boxValor.setText(null);;
+    }
+
+    @FXML
+    public Servico tabelaUsuarioClicked(MouseEvent e){
+        int i = tabelaServico.getSelectionModel().getSelectedIndex();
+        try {
+            Servico s = (Servico)tabelaServico.getItems().get(i);
+            servicoSelec = s;
+            return(s);
+        } catch (Exception exc) {
+            System.out.println("Nenhum Usuario Selecionado na Tabela");
+        }
+        return(null);
+        // Usuario user = (Usuario)tabelaUsuario.getItems().get(i);
+        // userSelec = user;
+        // return(user);
     }
 
  @FXML 

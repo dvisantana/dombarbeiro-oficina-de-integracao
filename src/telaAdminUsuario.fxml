@@ -75,7 +75,7 @@
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Button>
-            <Text fill="WHITE" layoutX="176.0" layoutY="35.0" onMouseClicked="#abrirTelaAdmin" strokeType="OUTSIDE" strokeWidth="0.0" text="Dom Barbeiro">
+            <Text fill="WHITE" layoutX="176.0" layoutY="35.0" onMouseClicked="#abrirTelaAdmin" strokeType="OUTSIDE" strokeWidth="0.0" text="Dom Barbeiro" >
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>

@@ -46,7 +46,7 @@ public class TelaServicosController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        carregarTabela(null);
     }
     private ObservableList<Servico> ListaServicos = FXCollections.observableArrayList();
     private static Servico servicoSelec = new Servico(null,null);
@@ -55,7 +55,7 @@ public class TelaServicosController implements Initializable {
     
     // private TableColumn<Servico, String> desc;
     // private TableColumn<Servico, Double> valor;
-
+    @FXML
     public Servico tabelaServicoClicked(MouseEvent e){
         int i = tabelaServico.getSelectionModel().getSelectedIndex();
         try {
@@ -70,28 +70,27 @@ public class TelaServicosController implements Initializable {
         // servicoSelec = servico;
         // return(servico);
     }
-    private boolean procurarOn;
+
+    // private boolean procurarOn = true;
+    @FXML
     public void carregarTabela(ActionEvent event){
         ListaServicos.clear();
-        Servico s = new Servico(null, null);
-        tableDesc.setCellValueFactory(new PropertyValueFactory<>("servico"));
+
+        tableDesc.setCellValueFactory(new PropertyValueFactory<>("desc"));
         tableValor.setCellValueFactory(new PropertyValueFactory<>("valor"));
 
-        try (Connection connection = ConexaoBD.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM Servico"))
+        try (Connection connection = ConexaoBD.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM Servicos"))
         {
             ResultSet resultSet = preparedStatement.executeQuery();
-
-
-            if(procurarOn){
                 while(resultSet.next()){
                     ListaServicos.add(new Servico(resultSet.getString(1), resultSet.getDouble(2)));
                     tabelaServico.setItems(ListaServicos);
                 }
-            }
-
-            // while(resultSet.next()){
-            //     ListaServico.add(new Servico(resultSet.getString(1), resultSet.getString(2), resultSet.getString(3)));
-            //     tabelaServico.setItems(ListaServico);
+            // if(procurarOn){
+                // while(resultSet.next()){
+                //     ListaServicos.add(new Servico(resultSet.getString(1), resultSet.getDouble(2)));
+                //     tabelaServico.setItems(ListaServicos);
+                // }
             // }
 
         } catch (SQLException e) {
@@ -116,6 +115,10 @@ public class TelaServicosController implements Initializable {
     private void abrirTelaServicos(ActionEvent event) {
         App.admAbrirServicos();
     }
+    @FXML
+    private void abrirTelaAdminUsuario(ActionEvent event){
+        App.adminAbrirUsuarios();
+    }
 
    
     
@@ -123,11 +126,9 @@ public class TelaServicosController implements Initializable {
 
     @FXML
     public void cadastrarServico(ActionEvent event){
-        
-       
+               
         String servico = boxDesc.getText();
-        //verificar
-        Double valor = Double.valueOf(boxValor.getText());
+        Double valor = Double.parseDouble(boxValor.getText());
 
         if (servico.isEmpty() || valor.isNaN() ) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -136,7 +137,7 @@ public class TelaServicosController implements Initializable {
             alert.showAndWait();
         } else {
            
-                try (Connection connection = ConexaoBD.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO Servico VALUES(?,?,?,?)")){
+                try (Connection connection = ConexaoBD.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO Servicos VALUES(?,?)")){
                     preparedStatement.setString(1, servico);
                     preparedStatement.setDouble(2, valor);
     
@@ -164,6 +165,7 @@ public class TelaServicosController implements Initializable {
                 // }
             }   
             clean(event);
+            carregarTabela(null);
     }
     
     @FXML
@@ -187,28 +189,93 @@ public class TelaServicosController implements Initializable {
         // userSelec = user;
         // return(user);
     }
+    @FXML 
+    public void editarServico(){
+        Servico s = tabelaServicoClicked(null);
 
- @FXML 
+        String servico = boxDesc.getText();
+        String valorStr = boxValor.getText();
+        if(servico.isEmpty() || valorStr.isEmpty() ){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setContentText("Preencha os campos para editar!");
+            alert.showAndWait();
+        }else{
+            Double valor = Double.parseDouble(valorStr);
+            if(s == null){
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText(null);
+                alert.setContentText("Selecione um usuário na tabela para editar");
+                alert.showAndWait();
+            }else{
+                try(Connection connection = ConexaoBD.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement
+                ("UPDATE Servicos SET "
+                    + "ser_nome=?,"
+                    + "ser_preco=?"
+                    + " WHERE ser_nome = '"+s.getDesc()+"'"
+                )){
+                        preparedStatement.setString(1,servico );
+                        preparedStatement.setDouble(2, valor);
+                        preparedStatement.executeUpdate();
+                }catch (SQLException e){
+                        // e.printStackTrace();
+                        System.out.println("Erro ao alterar serviço");
+                }
+            }
+            carregarTabela(null);
+        }
+    }
+
+                
+    
+
+
+
+    @FXML 
     public void removerServico(){
         Servico s = tabelaServicoClicked(null);
 
-        int confirm = JOptionPane.showConfirmDialog(null, "Deseja realmente remover", "Mensagem de Confirmação", JOptionPane.YES_NO_OPTION);
-           
+        
+        if(s == null){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setContentText("Selecione um usuário na tabela para remover");
+            alert.showAndWait();
+        }else{
+            int confirm = JOptionPane.showConfirmDialog(null, "Deseja realmente remover", "Mensagem de Confirmação", JOptionPane.YES_NO_OPTION);
             if(confirm == 0){
-                try (Connection connection = ConexaoBD.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM Servico WHERE adm_login=?")){
+                try (Connection connection = ConexaoBD.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM Servicos WHERE ser_nome=?")){
                     preparedStatement.setString(1, s.getDesc());
                     ListaServicos.remove(s);
                     preparedStatement.executeUpdate();
                     carregarTabela(null);
-                } catch (SQLException e) {
+                } catch (SQLException e){
                     JOptionPane.showMessageDialog(null, "Erro ao Remover ","Erro",JOptionPane.ERROR_MESSAGE);
                 }
-
             } 
             else{
                 JOptionPane.showMessageDialog(null, "Operação Cancelada!","Aviso",JOptionPane.WARNING_MESSAGE);
             }
+        }
         
     }
 
 }
+
+
+
+// try (Connection connection = ConexaoBD.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement("UPDATE Usuario SET "
+// + "`adm_nome`=?,"
+// + "`adm_login`=?,"
+// + "`adm_senha`=?,"
+// + "`adm_tipo`= ? WHERE adm_login = '"+u.getUsuario()+"'")){
+//     preparedStatement.setString(1, nome);
+//     preparedStatement.setString(2, u.getUsuario());
+//     preparedStatement.setString(3, senha);
+//     preparedStatement.setInt(4, tipo);
+
+//     preparedStatement.executeUpdate();
+// } catch (SQLException e) {
+//     // e.printStackTrace();
+//     System.out.println("ERRO AQUI TRUE");
+// }

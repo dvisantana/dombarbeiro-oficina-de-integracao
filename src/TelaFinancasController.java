@@ -9,6 +9,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
@@ -25,8 +26,7 @@ public class TelaFinancasController implements Initializable{
     @FXML
     private TextField boxDescricao;
 
-    @FXML
-    private TextField boxValor;
+   
 
     @FXML
     private ComboBox<?> comboBoxMes;
@@ -111,6 +111,12 @@ public class TelaFinancasController implements Initializable{
     }
 
     @FXML
+
+    private Button botaoCadastrar;
+
+    @FXML
+    private Button botaoEditar;
+  
     private void carregarTabela(ActionEvent event){
         ListaFinancas.clear();
 
@@ -201,20 +207,43 @@ public class TelaFinancasController implements Initializable{
 
     // ================= FIM FUNCOES =================
 
+
     //Abertura de Telas
     @FXML
-    private void abrirTelaAdmin(MouseEvent event) {
-        App.abrirAdmin();
+    private Button botaoRemover;
+
+    @FXML
+    private TextField boxServicos;
+
+    @FXML
+    private TextField boxValor;
+
+    @FXML
+    private TableView<?> tabelaServico;
+
+    @FXML
+    void abrirTelaAdmin(MouseEvent event) {
+
     }
 
     @FXML
-    private void abrirTelaAdminUsuario(ActionEvent event){
-        App.adminAbrirUsuarios();
+    void abrirTelaAdminUsuario(ActionEvent event) {
+
     }
 
     @FXML
-    private void sairApp(ActionEvent event) {
-        App.csSairApp();
+    void sairApp(ActionEvent event) {
+
     }
+
+
+
+    @FXML
+    private void abrirTelaServicos(ActionEvent event) {
+        App.admAbrirServicos();
+    }
+
 
 }
+
+

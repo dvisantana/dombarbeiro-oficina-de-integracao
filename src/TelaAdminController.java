@@ -36,6 +36,11 @@ public class TelaAdminController {
     // }
 
     @FXML
+    private void abrirTelaServicos(ActionEvent event) {
+        App.admAbrirServicos();
+    }
+
+    @FXML
     private void abrirTelaAdminUsuario(ActionEvent event){
         App.adminAbrirUsuarios();
     }

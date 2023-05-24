@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #E6E6E6;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TelaServicosController">
+   <children>
+      <Pane prefHeight="400.0" prefWidth="120.0" style="-fx-background-color: #5E0B15;">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#242424" height="50.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="600.0" />
+            <Button alignment="BASELINE_LEFT" layoutX="15.0" layoutY="77.0" minHeight="18.0" mnemonicParsing="false" onAction="#abrirTelaAdminUsuario" prefHeight="24.0" prefWidth="105.0" style="-fx-background-radius: 20 0 0 20; -fx-background-color: #5e0b15; -fx-cursor: hand;" text="Usuários" textFill="WHITE" textOverrun="WORD_ELLIPSIS">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Button>
+            <ImageView fitHeight="48.0" fitWidth="48.0" layoutX="34.0" layoutY="1.0">
+               <image>
+                  <Image url="@../../../../../../../Downloads/Frame%201%20(1).png" />
+               </image>
+            </ImageView>
+            <Button alignment="BASELINE_LEFT" layoutX="15.0" layoutY="104.0" minHeight="18.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="105.0" style="-fx-background-radius: 20 0 0 20; -fx-background-color: #5e0b15; -fx-cursor: hand;" text="Finanças" textFill="WHITE" textOverrun="WORD_ELLIPSIS">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Button>
+            <Button alignment="BASELINE_LEFT" layoutX="15.0" layoutY="158.0" minHeight="18.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="105.0" style="-fx-background-radius: 0; -fx-background-color: 0; -fx-cursor: hand;" text="Configurações" textFill="WHITE" textOverrun="WORD_ELLIPSIS">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Button>
+            <Button alignment="BASELINE_LEFT" layoutX="15.0" layoutY="131.0" minHeight="18.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="105.0" style="-fx-background-radius: 20 0 0 20; -fx-background-color: #E6E6E6; -fx-cursor: hand;" text="Serviços" textFill="#5e0b15" textOverrun="WORD_ELLIPSIS">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Button>
+            <Button alignment="BASELINE_LEFT" layoutX="15.0" layoutY="365.0" minHeight="18.0" mnemonicParsing="false" onAction="#sairApp" prefHeight="24.0" prefWidth="105.0" style="-fx-background-radius: 0; -fx-background-color: 0 0 0 20; -fx-cursor: hand;" text="Sair" textFill="WHITE" textOverrun="WORD_ELLIPSIS">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Button>
+            <Text fill="WHITE" layoutX="176.0" layoutY="35.0" onMouseClicked="#abrirTelaAdmin" strokeType="OUTSIDE" strokeWidth="0.0" text="Dom Barbeiro">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
+      <TableView fx:id="tabelaServico" layoutX="172.0" layoutY="132.0" onMouseClicked="#tabelaServicoClicked" prefHeight="200.0" prefWidth="368.0" style="-fx-background-color: #ffffff; -fx-background-radius: 5px;">
+        <columns>
+          <TableColumn fx:id="tableDesc" prefWidth="284.0" text="Serviço" />
+          <TableColumn fx:id="tableValor" prefWidth="83.0" text="Valor" />
+            <TableColumn fx:id="tableServico1" prefWidth="284.0" text="Serviço" />
+        </columns>
+      </TableView>
+      <TextField fx:id="boxDesc" layoutX="171.0" layoutY="100.0" prefHeight="25.0" prefWidth="280.0" style="-fx-background-radius: 5px; -fx-background-color: #ffffff;" />
+      <Label layoutX="172.0" layoutY="82.0" text="Serviço" />
+      <Button fx:id="botaoCadastrar" layoutX="172.0" layoutY="340.0" mnemonicParsing="false" onAction="#cadastrarServico" onMouseClicked="#cadastrarServico" prefHeight="24.0" prefWidth="80.0" style="-fx-background-color: #5E0B15; -fx-background-radius: 5px;" text="Cadastrar" textFill="WHITE">
+         <font>
+            <Font name="Verdana" size="12.0" />
+         </font>
+      </Button>
+      <Button fx:id="botaoEditar" layoutX="258.0" layoutY="340.0" mnemonicParsing="false" onAction="#editarServico" prefHeight="24.0" prefWidth="80.0" style="-fx-background-color: #5E0B15; -fx-background-radius: 5px;" text="Editar" textFill="WHITE">
+         <font>
+            <Font name="Verdana" size="12.0" />
+         </font>
+      </Button>
+      <Button fx:id="botaoRemover" layoutX="344.0" layoutY="341.0" mnemonicParsing="false" onAction="#removerServico" prefHeight="24.0" prefWidth="80.0" style="-fx-background-color: #5E0B15; -fx-background-radius: 5px;" text="Remover" textFill="WHITE">
+         <font>
+            <Font name="Verdana" size="12.0" />
+         </font>
+      </Button>
+      <Label layoutX="458.0" layoutY="83.0" text="Valor" />
+      <TextField fx:id="boxValor" layoutX="458.0" layoutY="100.0" prefHeight="25.0" prefWidth="80.0" style="-fx-background-color: #ffffff; -fx-background-radius: 5px;" />
+   </children>
+</Pane>

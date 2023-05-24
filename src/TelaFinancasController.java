@@ -26,8 +26,7 @@ public class TelaFinancasController implements Initializable{
     @FXML
     private TextField boxDescricao;
 
-    @FXML
-    private TextField boxValor;
+   
 
     @FXML
     private ComboBox<?> comboBoxMes;

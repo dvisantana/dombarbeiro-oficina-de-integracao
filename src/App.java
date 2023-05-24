@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 public class App extends Application {
-    private static Scene sceneTelaLogin, sceneTelaAdmin, sceneTelaAdminUsuario, sceneTelaCadastroUsuario, sceneTelaFinancas;
+    private static Scene sceneTelaLogin, sceneTelaAdmin, sceneTelaAdminUsuario, sceneTelaCadastroUsuario, sceneTelaFinancas,sceneTelaServicos;
     private static Stage primaryStage;
 
 
@@ -25,6 +25,7 @@ public class App extends Application {
         FXMLLoader telaAdmin = new FXMLLoader(getClass().getResource("telaAdmin.fxml"));
         FXMLLoader telaAdminUsuario = new FXMLLoader(getClass().getResource("telaAdminUsuario.fxml"));
         FXMLLoader telaFinancas = new FXMLLoader(getClass().getResource("telaFinancas.fxml"));
+        FXMLLoader telaServicos = new FXMLLoader(getClass().getResource("telaServicos.fxml"));
         
         
         primaryStage = stage;
@@ -33,12 +34,15 @@ public class App extends Application {
         Parent parentTelaAdmin = telaAdmin.load();
         Parent parentTelaAdminUsuario = telaAdminUsuario.load();
         Parent parentTelaFinancas = telaFinancas.load();
+        Parent parentTelaServicos = telaServicos.load();
         
 
         sceneTelaLogin = new Scene(parentTelaLogin);
         sceneTelaAdmin = new Scene(parentTelaAdmin);
         sceneTelaAdminUsuario = new Scene(parentTelaAdminUsuario);
         sceneTelaFinancas = new Scene(parentTelaFinancas);
+        sceneTelaServicos = new Scene(parentTelaServicos);
+
         
                 
         primaryStage.setTitle("DomBarbeiro");
@@ -71,6 +75,9 @@ public class App extends Application {
 
     public static void abrirAdmin(){
         primaryStage.setScene(sceneTelaAdmin);
+    }
+    public static void admAbrirServicos(){
+        primaryStage.setScene(sceneTelaServicos);
     }
 
 }

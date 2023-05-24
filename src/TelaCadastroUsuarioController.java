@@ -154,4 +154,11 @@ public class TelaCadastroUsuarioController implements Initializable {
         comboBoxTipo.setValue(null);
     }
 
+
+    @FXML
+    private void abrirTelaServicos(ActionEvent event) {
+        App.admAbrirServicos();
+    }
+
+
 }

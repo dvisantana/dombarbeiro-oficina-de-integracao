@@ -262,7 +262,7 @@ public class TelaServicosController implements Initializable {
 
 }
 
-
+//.
 
 // try (Connection connection = ConexaoBD.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement("UPDATE Usuario SET "
 // + "`adm_nome`=?,"

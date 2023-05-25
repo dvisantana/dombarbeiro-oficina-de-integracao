@@ -84,14 +84,9 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
-            <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="25.0" layoutY="108.0" opacity="0.5">
+            <ImageView layoutX="25.0" layoutY="108.0" opacity="0.5">
                <image>
-                  <Image url="@../imgs/icon-agenda.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="25.0" layoutY="153.0">
-               <image>
-                  <Image url="@../imgs/icon-quadrado.png" />
+                  <Image url="@../../../../../../../Downloads/icons8-planejador-24%20(1).png" />
                </image>
             </ImageView>
          </children>
@@ -101,10 +96,10 @@
             <Insets bottom="10.0" top="10.0" />
          </padding>
          <children>
-            <TextField />
-            <Button mnemonicParsing="false" text="Buscar" />
-            <Button mnemonicParsing="false" text="Cadastrar" />
-            <Button mnemonicParsing="false" text="Editar" />
+            <TextField fx:id="boxPesquisar" />
+            <Button fx:id="botaoPesquisar" mnemonicParsing="false" text="Buscar" />
+            <Button fx:id="botaoCadastrarPessoa" mnemonicParsing="false" text="Cadastrar" />
+            <Button fx:id="botaoEditarPessoa" mnemonicParsing="false" text="Editar" />
             <TableView prefHeight="300.0" prefWidth="600.0">
               <columns>
                 <TableColumn prefWidth="369.0000305175781" text="Cliente" />

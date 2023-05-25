@@ -261,21 +261,3 @@ public class TelaServicosController implements Initializable {
     }
 
 }
-
-//.
-
-// try (Connection connection = ConexaoBD.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement("UPDATE Usuario SET "
-// + "`adm_nome`=?,"
-// + "`adm_login`=?,"
-// + "`adm_senha`=?,"
-// + "`adm_tipo`= ? WHERE adm_login = '"+u.getUsuario()+"'")){
-//     preparedStatement.setString(1, nome);
-//     preparedStatement.setString(2, u.getUsuario());
-//     preparedStatement.setString(3, senha);
-//     preparedStatement.setInt(4, tipo);
-
-//     preparedStatement.executeUpdate();
-// } catch (SQLException e) {
-//     // e.printStackTrace();
-//     System.out.println("ERRO AQUI TRUE");
-// }

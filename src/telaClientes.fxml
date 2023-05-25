@@ -84,9 +84,14 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
-            <ImageView layoutX="25.0" layoutY="108.0" opacity="0.5">
+            <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="25.0" layoutY="108.0" opacity="0.5">
                <image>
-                  <Image url="@../../../../../../../Downloads/icons8-planejador-24%20(1).png" />
+                  <Image url="@../imgs/icon-agenda.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="25.0" layoutY="153.0">
+               <image>
+                  <Image url="@../imgs/icon-quadrado.png" />
                </image>
             </ImageView>
          </children>

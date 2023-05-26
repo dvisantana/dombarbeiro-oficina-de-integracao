@@ -40,6 +40,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -47,7 +48,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="1024.0" style="-fx-background-color: #E6E6E6;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TelaAdminUsuarioController">
    <children>
-      <Pane prefHeight="576.0" prefWidth="200.0" style="-fx-background-color: #5E0B15;">
+      <Pane prefHeight="576.0" prefWidth="200.0" style="-fx-background-color: #77A0A9;">
          <children>
             <VBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
@@ -63,12 +64,12 @@
             </VBox>
             <VBox alignment="TOP_RIGHT" layoutX="60.0" layoutY="100.0" prefHeight="200.0" prefWidth="140.0" spacing="5.0">
                <children>
-                  <Button alignment="BASELINE_LEFT" minHeight="40.0" mnemonicParsing="false" opacity="0.5" prefHeight="24.0" prefWidth="140.0" style="-fx-background-radius: 20 0 0 20; -fx-background-color: #5e0b15; -fx-cursor: hand;" text="Agenda" textFill="WHITE" textOverrun="WORD_ELLIPSIS">
+                  <Button alignment="BASELINE_LEFT" minHeight="40.0" mnemonicParsing="false" opacity="0.5" prefHeight="24.0" prefWidth="140.0" style="-fx-background-radius: 20 0 0 20; -fx-background-color: #77A0A9; -fx-cursor: hand;" text="Agenda" textFill="WHITE" textOverrun="WORD_ELLIPSIS">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" minHeight="40.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="140.0" style="-fx-background-radius: 20 0 0 20; -fx-background-color: #5E0B15; -fx-cursor: hand;" text="Clientes" textFill="WHITE" textOverrun="WORD_ELLIPSIS">
+                  <Button alignment="BASELINE_LEFT" minHeight="40.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="140.0" style="-fx-background-radius: 20 0 0 20; -fx-background-color: #77A0A9; -fx-cursor: hand;" text="Clientes" textFill="WHITE" textOverrun="WORD_ELLIPSIS">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
@@ -78,15 +79,25 @@
                   <Insets />
                </opaqueInsets>
             </VBox>
-            <Button layoutX="-8.0" layoutY="152.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="10.0" style="-fx-background-radius: 0 10 10 0; -fx-background-color: #fff;" />
-            <Button fx:id="botaoSair" alignment="BASELINE_LEFT" layoutX="81.0" layoutY="538.0" minHeight="18.0" mnemonicParsing="false" onAction="#sairApp" prefHeight="24.0" prefWidth="38.0" style="-fx-background-radius: 0; -fx-background-color: 0 0 0 20; -fx-cursor: hand;" text="Sair" textFill="WHITE" textOverrun="WORD_ELLIPSIS">
+            <Button layoutX="-8.0" layoutY="152.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="10.0" style="-fx-background-radius: 0 5 5 0; -fx-background-color: #fff;" />
+            <Button fx:id="botaoSair" alignment="BASELINE_LEFT" layoutX="50.0" layoutY="536.0" minHeight="18.0" mnemonicParsing="false" onAction="#sairApp" prefHeight="24.0" prefWidth="38.0" style="-fx-background-radius: 0; -fx-background-color: 0 0 0 20; -fx-cursor: hand;" text="Sair" textFill="WHITE" textOverrun="WORD_ELLIPSIS">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
-            <ImageView layoutX="25.0" layoutY="108.0" opacity="0.5">
+            <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="25.0" layoutY="108.0" opacity="0.5">
                <image>
-                  <Image url="@../../../../../../../Downloads/icons8-planejador-24%20(1).png" />
+                  <Image url="@../imgs/icon-agenda.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="24.0" layoutY="153.0">
+               <image>
+                  <Image url="@../imgs/icon-quadrado.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="24.0" layoutY="536.0">
+               <image>
+                  <Image url="@../imgs/icon-sair.png" />
                </image>
             </ImageView>
          </children>
@@ -96,16 +107,41 @@
             <Insets bottom="10.0" top="10.0" />
          </padding>
          <children>
-            <TextField fx:id="boxPesquisar" />
-            <Button fx:id="botaoPesquisar" mnemonicParsing="false" text="Buscar" />
-            <Button fx:id="botaoCadastrarPessoa" mnemonicParsing="false" text="Cadastrar" />
-            <Button fx:id="botaoEditarPessoa" mnemonicParsing="false" text="Editar" />
-            <TableView fx:id="tabelaPessoa" prefHeight="300.0" prefWidth="600.0">
+            <VBox prefHeight="50.0" prefWidth="600.0">
+               <children>
+                  <Text fill="#77a0a9" strokeType="OUTSIDE" strokeWidth="0.0" text="Cadastro de Clientes">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Text>
+               </children>
+            </VBox>
+            <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="600.0">
+               <children>
+                  <TextField fx:id="boxPesquisar" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="300.0" />
+                  <Button fx:id="botaoPesquisar" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" text="Buscar">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+            <TableView prefHeight="300.0" prefWidth="600.0">
               <columns>
-                <TableColumn prefWidth="369.0000305175781" text="Cliente" />
-                <TableColumn minWidth="0.0" prefWidth="229.99996948242188" text="Telefone" />
+                <TableColumn prefWidth="400.0" resizable="false" text="Cliente" />
+                <TableColumn prefWidth="200.0" resizable="false" text="Telefone" />
               </columns>
             </TableView>
+            <HBox alignment="BOTTOM_LEFT" prefHeight="40.0" prefWidth="600.0">
+               <children>
+                  <Button fx:id="botaoCadastrarPessoa" mnemonicParsing="false" text="Cadastrar" />
+                  <Button fx:id="botaoEditarPessoa" mnemonicParsing="false" text="Editar">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
          </children>
       </VBox>
    </children>

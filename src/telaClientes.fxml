@@ -100,7 +100,7 @@
             <Button fx:id="botaoPesquisar" mnemonicParsing="false" text="Buscar" />
             <Button fx:id="botaoCadastrarPessoa" mnemonicParsing="false" text="Cadastrar" />
             <Button fx:id="botaoEditarPessoa" mnemonicParsing="false" text="Editar" />
-            <TableView prefHeight="300.0" prefWidth="600.0">
+            <TableView fx:id="tabelaPessoa" prefHeight="300.0" prefWidth="600.0">
               <columns>
                 <TableColumn prefWidth="369.0000305175781" text="Cliente" />
                 <TableColumn minWidth="0.0" prefWidth="229.99996948242188" text="Telefone" />

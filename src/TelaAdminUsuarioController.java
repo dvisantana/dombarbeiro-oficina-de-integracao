@@ -62,7 +62,6 @@ public class TelaAdminUsuarioController implements Initializable{
     @FXML
     private TableColumn<Usuario, String> usuarioCol;
 
-    private TelaCadastroUsuarioController telaCadastroUsuarioController;
 
     private static Usuario userSelec = new Usuario(null,null,null);
     

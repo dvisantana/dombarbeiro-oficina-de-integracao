@@ -34,7 +34,7 @@
       <HBox alignment="CENTER" prefHeight="39.0" prefWidth="300.0">
          <children>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Telefone:" wrappingWidth="55.619140625" />
-            <TextField fx:id="boxUser" />
+            <TextField fx:id="boxTelefone" />
          </children>
          <VBox.margin>
             <Insets top="5.0" />

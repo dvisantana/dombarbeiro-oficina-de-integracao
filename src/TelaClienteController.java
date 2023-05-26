@@ -30,7 +30,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 
-public class TelaCadClienteController implements Initializable{
+public class TelaClienteController implements Initializable{
 
     @FXML
     private Button botaoBuscarPessoa;
@@ -52,13 +52,20 @@ public class TelaCadClienteController implements Initializable{
 
     @FXML
     private TableColumn<Pessoa, Integer> telefoneCol;
+    @FXML
+    private Button botaoPesquisar;
+    @FXML
+    private TextField boxPesquisar;
 
-
-    private TelaCadClienteController telaCadClienteController;
-
-    private static Pessoa userSelec = new Pessoa(null,null,null);
     
-    public static Pessoa getUserSelec(){
+
+
+
+    private TelaClienteController telaCadClienteController;
+
+    private static Pessoa userSelec = new Pessoa(null,0,null);
+    
+    public static Pessoa getPessoaSelec(){
         return userSelec;
     }
 

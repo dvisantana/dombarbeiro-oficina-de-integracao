@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 public class App extends Application {
-    private static Scene sceneTelaLogin, sceneTelaAdmin, sceneTelaAdminUsuario, sceneTelaCadastroUsuario, sceneTelaFinancas,sceneTelaServicos;
+    private static Scene sceneTelaLogin, sceneTelaAdmin, sceneTelaAdminUsuario, sceneTelaFinancas,sceneTelaServicos, sceneTelaClientes, sceneTelaAgenda;
     private static Stage primaryStage;
 
 
@@ -21,12 +21,20 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws Exception{
+
         FXMLLoader telaLogin = new FXMLLoader(getClass().getResource("telaLogin.fxml"));
+
+        // ========= TELAS DE ADMIN ========= //
         FXMLLoader telaAdmin = new FXMLLoader(getClass().getResource("telaAdmin.fxml"));
         FXMLLoader telaAdminUsuario = new FXMLLoader(getClass().getResource("telaAdminUsuario.fxml"));
         FXMLLoader telaFinancas = new FXMLLoader(getClass().getResource("telaFinancas.fxml"));
         FXMLLoader telaServicos = new FXMLLoader(getClass().getResource("telaServicos.fxml"));
-        
+        // ========= TELAS DE ADMIN ========= //
+
+        // ========= TELAS DE SECRETARIO ========= //
+        FXMLLoader telaClientes = new FXMLLoader(getClass().getResource("telaClientes.fxml"));
+        FXMLLoader telaAgenda = new FXMLLoader(getClass().getResource("telaAgenda.fxml"));
+        // ========= TELAS DE SECRETARIO ========= //
         
         primaryStage = stage;
 
@@ -35,18 +43,19 @@ public class App extends Application {
         Parent parentTelaAdminUsuario = telaAdminUsuario.load();
         Parent parentTelaFinancas = telaFinancas.load();
         Parent parentTelaServicos = telaServicos.load();
-        
+        Parent parentTelaClientes = telaClientes.load();
+        Parent parentTelaAgenda = telaAgenda.load();        
 
         sceneTelaLogin = new Scene(parentTelaLogin);
         sceneTelaAdmin = new Scene(parentTelaAdmin);
         sceneTelaAdminUsuario = new Scene(parentTelaAdminUsuario);
         sceneTelaFinancas = new Scene(parentTelaFinancas);
         sceneTelaServicos = new Scene(parentTelaServicos);
-
+        sceneTelaClientes = new Scene(parentTelaClientes);
+        sceneTelaAgenda = new Scene(parentTelaAgenda);
         
-                
         primaryStage.setTitle("DomBarbeiro");
-        primaryStage.setScene(sceneTelaAdminUsuario);
+        primaryStage.setScene(sceneTelaClientes);
         primaryStage.show();        
     }
 
@@ -79,5 +88,14 @@ public class App extends Application {
     public static void admAbrirServicos(){
         primaryStage.setScene(sceneTelaServicos);
     }
+    
+    // ========= TELAS DE SECRETARIO ========= //
+    public static void abrirAgenda(){
+        primaryStage.setScene(sceneTelaAgenda);
+    }
+    public static void abrirClientes(){
+        primaryStage.setScene(sceneTelaClientes);
+    }
+    // ========= TELAS DE SECRETARIO ========= //
 
 }

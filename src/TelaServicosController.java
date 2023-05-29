@@ -43,7 +43,6 @@ public class TelaServicosController implements Initializable {
 
     @FXML
     private TableColumn<Servico, String> tableDesc;
-
     private ObservableList<Servico> ListaServicos = FXCollections.observableArrayList();
     
     @Override

@@ -44,23 +44,20 @@ public class TelaServicosController implements Initializable {
     @FXML
     private TableColumn<Servico, String> tableDesc;
 
+    private ObservableList<Servico> ListaServicos = FXCollections.observableArrayList();
+    
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         carregarTabela(null);
     }
-    private ObservableList<Servico> ListaServicos = FXCollections.observableArrayList();
-    private static Servico servicoSelec = new Servico(null,null);
-   
-    
-    
-    // private TableColumn<Servico, String> desc;
-    // private TableColumn<Servico, Double> valor;
+
+
+
     @FXML
     public Servico tabelaServicoClicked(MouseEvent e){
         int i = tabelaServico.getSelectionModel().getSelectedIndex();
         try {
             Servico servico = (Servico)tabelaServico.getItems().get(i);
-            servicoSelec = servico;
             return(servico);
         } catch (Exception exc) {
             System.out.println("Nenhum Servico Selecionado na Tabela");
@@ -71,7 +68,6 @@ public class TelaServicosController implements Initializable {
         // return(servico);
     }
 
-    // private boolean procurarOn = true;
     @FXML
     public void carregarTabela(ActionEvent event){
         ListaServicos.clear();
@@ -96,47 +92,21 @@ public class TelaServicosController implements Initializable {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }
-    @FXML
-    void abrirTelaAdmin(MouseEvent event) {
-
-    }
-
-    @FXML
-    void abrirTelaAdminServico(ActionEvent event) {
-
-    }
-
-    @FXML
-    void sairApp(ActionEvent event) {
-
-    }
-    @FXML
-    private void abrirTelaServicos(ActionEvent event) {
-        App.admAbrirServicos();
-    }
-    @FXML
-    private void abrirTelaAdminUsuario(ActionEvent event){
-        App.adminAbrirUsuarios();
-    }
-
-   
-    
-   
-
+    } 
+       
     @FXML
     public void cadastrarServico(ActionEvent event){
                
         String servico = boxDesc.getText();
-        Double valor = Double.parseDouble(boxValor.getText());
+        String valorStr = boxValor.getText();
 
-        if (servico.isEmpty() || valor.isNaN() ) {
+        if (servico.isEmpty() || valorStr.isEmpty() ) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(null);
             alert.setContentText("Preencha todos os campos!");
             alert.showAndWait();
         } else {
-           
+                Double valor = Double.parseDouble(valorStr);
                 try (Connection connection = ConexaoBD.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO Servicos VALUES(?,?)")){
                     preparedStatement.setString(1, servico);
                     preparedStatement.setDouble(2, valor);
@@ -170,8 +140,8 @@ public class TelaServicosController implements Initializable {
     
     @FXML
     private void clean(ActionEvent event) {
-        boxDesc.setText(null);
-        boxValor.setText(null);;
+        boxDesc.setText("");
+        boxValor.setText("");;
     }
 
     @FXML
@@ -179,7 +149,6 @@ public class TelaServicosController implements Initializable {
         int i = tabelaServico.getSelectionModel().getSelectedIndex();
         try {
             Servico s = (Servico)tabelaServico.getItems().get(i);
-            servicoSelec = s;
             return(s);
         } catch (Exception exc) {
             System.out.println("Nenhum Usuario Selecionado na Tabela");
@@ -189,19 +158,23 @@ public class TelaServicosController implements Initializable {
         // userSelec = user;
         // return(user);
     }
+    
     @FXML 
     public void editarServico(){
         Servico s = tabelaServicoClicked(null);
 
         String servico = boxDesc.getText();
         String valorStr = boxValor.getText();
-        if(servico.isEmpty() || valorStr.isEmpty() ){
+        if(servico.isEmpty() && valorStr.isEmpty() ){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(null);
             alert.setContentText("Preencha os campos para editar!");
             alert.showAndWait();
-        }else{
-            Double valor = Double.parseDouble(valorStr);
+        }else{     
+            Double valor = null;     
+            if(!valorStr.isEmpty()){
+                valor = Double.parseDouble(valorStr);  
+            }
             if(s == null){
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setHeaderText(null);
@@ -214,6 +187,12 @@ public class TelaServicosController implements Initializable {
                     + "ser_preco=?"
                     + " WHERE ser_nome = '"+s.getDesc()+"'"
                 )){
+                        if(servico.isEmpty()){
+                            servico = s.getDesc();
+                        }
+                        if(valorStr.isEmpty() || valor.isNaN()){
+                            valor = s.getValor();
+                        }
                         preparedStatement.setString(1,servico );
                         preparedStatement.setDouble(2, valor);
                         preparedStatement.executeUpdate();
@@ -221,16 +200,12 @@ public class TelaServicosController implements Initializable {
                         // e.printStackTrace();
                         System.out.println("Erro ao alterar serviço");
                 }
+                clean(null);
             }
             carregarTabela(null);
         }
     }
-
-                
     
-
-
-
     @FXML 
     public void removerServico(){
         Servico s = tabelaServicoClicked(null);
@@ -260,22 +235,23 @@ public class TelaServicosController implements Initializable {
         
     }
 
+
+
+    //Abertura Telas
+    @FXML
+    private void abrirTelaAdmin(MouseEvent event) {
+        App.abrirAdmin();
+    }
+    @FXML
+    private void sairApp(ActionEvent event) {
+        App.csSairApp();
+    }
+    @FXML
+    private void abrirTelaServicos(ActionEvent event) {
+        App.admAbrirServicos();
+    }
+    @FXML
+    private void abrirTelaAdminUsuario(ActionEvent event){
+        App.adminAbrirUsuarios();
+    }
 }
-
-//.
-
-// try (Connection connection = ConexaoBD.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement("UPDATE Usuario SET "
-// + "`adm_nome`=?,"
-// + "`adm_login`=?,"
-// + "`adm_senha`=?,"
-// + "`adm_tipo`= ? WHERE adm_login = '"+u.getUsuario()+"'")){
-//     preparedStatement.setString(1, nome);
-//     preparedStatement.setString(2, u.getUsuario());
-//     preparedStatement.setString(3, senha);
-//     preparedStatement.setInt(4, tipo);
-
-//     preparedStatement.executeUpdate();
-// } catch (SQLException e) {
-//     // e.printStackTrace();
-//     System.out.println("ERRO AQUI TRUE");
-// }

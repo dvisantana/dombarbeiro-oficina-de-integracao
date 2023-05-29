@@ -75,12 +75,12 @@
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Button>
-            <Text fill="WHITE" layoutX="176.0" layoutY="35.0" onMouseClicked="#abrirTelaAdmin" strokeType="OUTSIDE" strokeWidth="0.0" text="Dom Barbeiro" >
+            <Text fill="WHITE" layoutX="176.0" layoutY="35.0" onMouseClicked="#abrirTelaAdmin" strokeType="OUTSIDE" strokeWidth="0.0" text="Dom Barbeiro">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
                <cursor>
-                  <Cursor fx:constant="OPEN_HAND" />
+                  <Cursor fx:constant="HAND" />
                </cursor>
             </Text>
          </children>
@@ -94,7 +94,7 @@
           <TableColumn fx:id="nomeCol" prefWidth="75.0" text="Nome" />
           <TableColumn fx:id="usuarioCol" prefWidth="75.0" text="Usuário" />
             <TableColumn fx:id="senhaCol" prefWidth="75.0" text="Senha" />
-            <TableColumn prefWidth="75.0" text="Tipo" />
+            <TableColumn fx:id="tipoCol" prefWidth="75.0" text="Tipo" />
         </columns>
       </TableView>
       <Button fx:id="botaoRemoverUsuario" layoutX="326.0" layoutY="322.0" mnemonicParsing="false" onAction="#removerUsuario" style="-fx-background-color: #5E0B15;" text="Remover" textFill="WHITE">

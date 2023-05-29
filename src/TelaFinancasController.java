@@ -1,8 +1,11 @@
 import java.net.URL;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
@@ -24,12 +27,19 @@ import javafx.scene.input.MouseEvent;
 public class TelaFinancasController implements Initializable{
 
     @FXML
-    private TextField boxDescricao;
-
-   
+    private TextField boxValor;
 
     @FXML
-    private ComboBox<?> comboBoxMes;
+    private TextField boxDescricao;
+
+    @FXML
+    private Button botaoCadastrar;
+
+    @FXML
+    private Button botaoEditar;
+
+    @FXML
+    private ComboBox<String> comboBoxMes;
 
     @FXML
     private TableView<Financas> tabelaFinancas;
@@ -50,14 +60,18 @@ public class TelaFinancasController implements Initializable{
     private TextArea textGanhos;
 
     @FXML
-    private TextArea textLucros;
-
+    private TextArea textLucros;    
 
     private ObservableList<Financas> ListaFinancas = FXCollections.observableArrayList();
+
+    private boolean filtroData = false;
 
     //Assim que abrir a tela fara o que esta dentro dessa funcano "initialize"
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        ObservableList<String> list = FXCollections.observableArrayList("Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro");
+        comboBoxMes.setItems(list);
+
         carregarTabela(null);
         calcLucros();
     }
@@ -70,19 +84,41 @@ public class TelaFinancasController implements Initializable{
 
         Double ganho = 0.0;
 
-        try (Connection connection = ConexaoBD.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement("SELECT fin_quantia FROM Finanças WHERE fin_tipo=0;"))
-        {
-            ResultSet resultSet = preparedStatement.executeQuery();
-
-            while(resultSet.next()){
-                ganho += resultSet.getDouble(1);
+        //Com filtro de data:
+        if(filtroData){
+            try (Connection connection = ConexaoBD.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement("SELECT fin_quantia FROM Finanças WHERE MONTH(fin_data) = ? AND fin_tipo = 0;"))
+            {
+                int mes = mesFiltroSelecionado();
+                preparedStatement.setInt(1,mes);
+                ResultSet resultSet = preparedStatement.executeQuery();
+                
+                while(resultSet.next()){
+                    ganho += resultSet.getDouble(1);
+                }
+    
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
+            textGanhos.setText("R$ " + ganho.toString());
+            return ganho;
         }
-        textGanhos.setText("R$ " + ganho.toString());
-        return ganho;
+        // Se não precisar filtrar: (normal)
+        else{
+            try (Connection connection = ConexaoBD.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement("SELECT fin_quantia FROM Finanças WHERE fin_tipo=0;"))
+            {
+                ResultSet resultSet = preparedStatement.executeQuery();
+    
+                while(resultSet.next()){
+                    ganho += resultSet.getDouble(1);
+                }
+    
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            textGanhos.setText("R$ " + ganho.toString());
+            return ganho;
+        }
+
     }
 
     private void calcLucros(){
@@ -95,51 +131,88 @@ public class TelaFinancasController implements Initializable{
 
         Double despesa = 0.0;
 
-        try (Connection connection = ConexaoBD.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement("SELECT fin_quantia FROM Finanças WHERE fin_tipo=1;"))
-        {
-            ResultSet resultSet = preparedStatement.executeQuery();
-
-            while(resultSet.next()){
-                despesa += resultSet.getDouble(1);
+        //Com filtro de data:
+        if(filtroData){
+            try (Connection connection = ConexaoBD.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement("SELECT fin_quantia FROM Finanças WHERE MONTH(fin_data) = ? AND fin_tipo = 1;"))
+            {
+                int mes = mesFiltroSelecionado();
+                preparedStatement.setInt(1, mes);
+                ResultSet resultSet = preparedStatement.executeQuery();
+    
+                while(resultSet.next()){
+                    despesa += resultSet.getDouble(1);
+                }
+    
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
+            textDespesas.setText("R$ " + despesa.toString());
+            return despesa;
         }
-        textDespesas.setText("R$ " + despesa.toString());
-        return despesa;
+        // Se não precisar filtrar: (normal)
+        else{
+            try (Connection connection = ConexaoBD.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement("SELECT fin_quantia FROM Finanças WHERE fin_tipo=1;"))
+            {
+                ResultSet resultSet = preparedStatement.executeQuery();
+    
+                while(resultSet.next()){
+                    despesa += resultSet.getDouble(1);
+                }
+    
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            textDespesas.setText("R$ " + despesa.toString());
+            return despesa;
+        }
     }
-
-    @FXML
-
-    private Button botaoCadastrar;
-
-    @FXML
-    private Button botaoEditar;
   
     private void carregarTabela(ActionEvent event){
         ListaFinancas.clear();
 
         valorCol.setCellValueFactory(new PropertyValueFactory<>("valor"));
         descricaoCol.setCellValueFactory(new PropertyValueFactory<>("descricao"));
+        dataCol.setCellValueFactory(new PropertyValueFactory<>("data"));
 
-        try (Connection connection = ConexaoBD.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement("SELECT fin_descricao,fin_quantia,fin_data FROM Finanças;"))
-        {
-            ResultSet resultSet = preparedStatement.executeQuery();
-
-            while(resultSet.next()){
-                ListaFinancas.add(new Financas(resultSet.getString(1), Double.parseDouble(resultSet.getString(2)), resultSet.getString(3)));
-                tabelaFinancas.setItems(ListaFinancas);
+        //Com filtro de data:
+        if(filtroData){
+            int mes = mesFiltroSelecionado();
+            try (Connection connection = ConexaoBD.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement("SELECT fin_descricao,fin_quantia,fin_data FROM Finanças WHERE MONTH(fin_data) = ?;"))
+            {
+                preparedStatement.setInt(1, mes);
+                ResultSet resultSet = preparedStatement.executeQuery();
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+    
+                while(resultSet.next()){
+                    ListaFinancas.add(new Financas(resultSet.getString(1), Double.parseDouble(resultSet.getString(2)), LocalDateTime.parse(resultSet.getString(3), formatter)));
+                    tabelaFinancas.setItems(ListaFinancas);
+                }
+    
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
+        }
+        // Se não precisar filtrar: (normal)
+        else{
+            try (Connection connection = ConexaoBD.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement("SELECT fin_descricao,fin_quantia,fin_data FROM Finanças;"))
+            {
+                ResultSet resultSet = preparedStatement.executeQuery();
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+    
+                while(resultSet.next()){
+                    ListaFinancas.add(new Financas(resultSet.getString(1), Double.parseDouble(resultSet.getString(2)), LocalDateTime.parse(resultSet.getString(3), formatter)));
+                    tabelaFinancas.setItems(ListaFinancas);
+                }
+    
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
         calcLucros();
     }
 
     @FXML
-    private void addDespesa(ActionEvent event) {
+    private void addDespesa(ActionEvent event){
         String descricao = boxDescricao.getText();
         Double valor = 0.0;
         // Double valor = Double.parseDouble(boxValor.getText());
@@ -170,7 +243,7 @@ public class TelaFinancasController implements Initializable{
     }
 
     @FXML
-    private void addLucro(ActionEvent event) {
+    private void addLucro(ActionEvent event){
         String descricao = boxDescricao.getText();
         // Double valor = Double.parseDouble(boxValor.getText());
         Double valor = 0.0;
@@ -200,43 +273,90 @@ public class TelaFinancasController implements Initializable{
         carregarTabela(null);
     }
 
+    @FXML
+    private void filtrarMesFinancas(ActionEvent event){
+        filtroData = true;
+        carregarTabela(null);
+        System.out.println(mesFiltroSelecionado());
+    }
+
+    @FXML
+    private void resetarFiltroMesFinancas(ActionEvent event){
+        filtroData = false;
+        comboBoxMes.valueProperty().set(null);
+        carregarTabela(null);
+        System.out.println(mesFiltroSelecionado());
+    }
+
     private void clean(){
         boxDescricao.setText("");
         boxValor.setText("");
     }
 
+    private int mesFiltroSelecionado(){
+        filtroData = true;
+        try {
+            switch (comboBoxMes.getValue()){
+                case "Janeiro":
+                    return 1;
+                case "Fevereiro":
+                    return 2;
+                case "Março":
+                    return 3;
+                    case "Abril":
+                    return 4;
+                case "Maio":
+                    return 5;
+                case "Junho":
+                    return 6;
+                case "Julho":
+                    return 7;
+                case "Agosto":
+                    return 8;
+                case "Setembro":
+                    return 9;
+                    case "Outubro":
+                    return 10;
+                case "Novembro":
+                    return 11;
+                case "Dezembro":
+                    return 12;
+                default:
+                    return 0;                   
+            }
+        } catch (Exception e) {
+            filtroData = false;
+            return 0;
+        }
+        
+    }
     // ================= FIM FUNCOES =================
 
 
     //Abertura de Telas
-    @FXML
-    private Button botaoRemover;
+    // @FXML
+    // private Button botaoRemover;
+
+    // @FXML
+    // private TextField boxServicos;
+
+    // @FXML
+    // private TableView<?> tabelaServico;
 
     @FXML
-    private TextField boxServicos;
-
-    @FXML
-    private TextField boxValor;
-
-    @FXML
-    private TableView<?> tabelaServico;
-
-    @FXML
-    void abrirTelaAdmin(MouseEvent event) {
-
+    private void abrirTelaAdmin(MouseEvent event) {
+        App.abrirAdmin();
     }
 
     @FXML
-    void abrirTelaAdminUsuario(ActionEvent event) {
-
+    private void abrirTelaAdminUsuario(ActionEvent event) {
+        App.adminAbrirUsuarios();
     }
 
     @FXML
-    void sairApp(ActionEvent event) {
-
+    private void sairApp(ActionEvent event) {
+        App.csSairApp();
     }
-
-
 
     @FXML
     private void abrirTelaServicos(ActionEvent event) {

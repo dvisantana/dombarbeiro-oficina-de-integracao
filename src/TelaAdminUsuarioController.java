@@ -19,6 +19,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -61,10 +62,13 @@ public class TelaAdminUsuarioController implements Initializable{
 
     @FXML
     private TableColumn<Usuario, String> usuarioCol;
+    
+    @FXML
+    private TableColumn<Usuario, String> tipoCol;
 
     private TelaCadastroUsuarioController telaCadastroUsuarioController;
 
-    private static Usuario userSelec = new Usuario(null,null,null);
+    private static Usuario userSelec = new Usuario();
     
     public static Usuario getUserSelec(){
         return userSelec;
@@ -91,30 +95,38 @@ public class TelaAdminUsuarioController implements Initializable{
         nomeCol.setCellValueFactory(new PropertyValueFactory<>("nome"));
         usuarioCol.setCellValueFactory(new PropertyValueFactory<>("usuario"));
         senhaCol.setCellValueFactory(new PropertyValueFactory<>("senha"));
+        tipoCol.setCellValueFactory(new PropertyValueFactory<>("tipoStr"));
+
 
         try (Connection connection = ConexaoBD.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM Usuario"))
         {
             ResultSet resultSet = preparedStatement.executeQuery();
 
-
             if(procurarOn){
                 while(resultSet.next()){
+                    String tipoString = "";
+                    if(resultSet.getInt(4) == 0){
+                        tipoString = "Administrador";
+                    }else if(resultSet.getInt(4) == 1){
+                        tipoString = "Secretário";
+                    }
                     if(boxPesquisar.getText().equalsIgnoreCase(resultSet.getString(1))){
-                        ListaUsuarios.add(new Usuario(resultSet.getString(1), resultSet.getString(2), resultSet.getString(3)));
+                        ListaUsuarios.add(new Usuario(resultSet.getString(1), resultSet.getString(2), resultSet.getString(3), resultSet.getInt(4)));
                         tabelaUsuario.setItems(ListaUsuarios);
                     }
                 }
             }else{
                 while(resultSet.next()){
-                    ListaUsuarios.add(new Usuario(resultSet.getString(1), resultSet.getString(2), resultSet.getString(3)));
+                    String tipoString = "";
+                    if(resultSet.getInt(4) == 0){
+                        tipoString = "Administrador";
+                    }else if(resultSet.getInt(4) == 1){
+                        tipoString = "Secretário";
+                    }
+                    ListaUsuarios.add(new Usuario(resultSet.getString(1), resultSet.getString(2), resultSet.getString(3), resultSet.getInt(4)));
                     tabelaUsuario.setItems(ListaUsuarios);
                 }
             }
-
-            // while(resultSet.next()){
-            //     ListaUsuarios.add(new Usuario(resultSet.getString(1), resultSet.getString(2), resultSet.getString(3)));
-            //     tabelaUsuario.setItems(ListaUsuarios);
-            // }
 
         } catch (SQLException e) {
             e.printStackTrace();

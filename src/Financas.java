@@ -1,12 +1,15 @@
+import java.time.LocalDateTime;
+
 public class Financas {
 
     protected int tipo;
     protected double valor;
     protected String descricao;
-    protected String data;
+    // protected LocalDateTime data;
+    protected LocalDateTime data;
 
 
-    public Financas(String descricao, double valor, String data) {
+    public Financas(String descricao, double valor, LocalDateTime data) {
         this.descricao = descricao;
         this.valor = valor;
         this.data = data;
@@ -32,6 +35,9 @@ public class Financas {
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
-       
+    
+    public LocalDateTime getData(){
+        return data;
+    }
 
 }

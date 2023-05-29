@@ -36,7 +36,7 @@
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Button>
-            <Button alignment="BASELINE_LEFT" layoutX="15.0" layoutY="131.0" minHeight="18.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="105.0" style="-fx-background-radius: 0; -fx-background-color: 0; -fx-cursor: hand;" text="Serviços" textFill="WHITE" textOverrun="WORD_ELLIPSIS">
+            <Button alignment="BASELINE_LEFT" layoutX="15.0" layoutY="131.0" minHeight="18.0" mnemonicParsing="false" onAction="#abrirTelaServicos" prefHeight="24.0" prefWidth="105.0" style="-fx-background-radius: 0; -fx-background-color: 0; -fx-cursor: hand;" text="Serviços" textFill="WHITE" textOverrun="WORD_ELLIPSIS">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Button>
@@ -66,8 +66,8 @@
       <TextField fx:id="boxDescricao" layoutX="174.0" layoutY="349.0" prefHeight="25.0" prefWidth="216.0" style="-fx-background-radius: 5px; -fx-background-color: #ffffff;" />
       <Label layoutX="175.0" layoutY="330.0" text="Descrição" />
       <Label layoutX="403.0" layoutY="330.0" text="Valor" />
-      <ComboBox fx:id="comboBoxMes" layoutX="462.0" layoutY="93.0" prefHeight="25.0" prefWidth="80.0" />
-      <Label layoutX="463.0" layoutY="76.0" text="Mês" />
+      <ComboBox fx:id="comboBoxMes" layoutX="457.0" layoutY="68.0" prefHeight="25.0" prefWidth="133.0" />
+      <Label layoutX="458.0" layoutY="51.0" text="Mês" />
       <Label layoutX="379.0" layoutY="53.0" text="Lucros" />
       <Label layoutX="282.0" layoutY="53.0" text="Despesas" />
       <Label layoutX="198.0" layoutY="53.0" text="Ganhos" />
@@ -92,5 +92,7 @@
             <Font size="14.0" />
          </font>
       </TextArea>
+      <Button fx:id="resetarFiltroMesFinancas" layoutX="535.0" layoutY="98.0" mnemonicParsing="false" onAction="#resetarFiltroMesFinancas" text="Resetar" />
+      <Button fx:id="botaoFiltrar" layoutX="486.0" layoutY="98.0" mnemonicParsing="false" onAction="#filtrarMesFinancas" text="Filtrar" />
    </children>
 </Pane>

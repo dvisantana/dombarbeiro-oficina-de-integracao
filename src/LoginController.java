@@ -19,6 +19,24 @@ public class LoginController {
     @FXML
     private TextField boxUsuario;
 
+    private Usuario usuarioLogin = new Usuario();
+
+
+    private Usuario criaUsuario(String usuario){
+        try (Connection connection = ConexaoBD.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM Usuario WHERE adm_login = ?"))
+        {
+            preparedStatement.setString(1, usuario);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while(resultSet.next()){
+                Usuario usuarioTeste = new Usuario(resultSet.getString(1), resultSet.getString(2), resultSet.getString(3), resultSet.getInt(4));
+                return usuarioTeste;
+            }
+            return null;
+        }catch (Exception e) {
+            return null;
+        }
+    }
+
     public boolean verificarLogin(String usuario, String senha){
         try (Connection connection = ConexaoBD.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM Usuario WHERE adm_login = ? AND adm_senha = ?"))
@@ -38,16 +56,18 @@ public class LoginController {
         String login = boxUsuario.getText();
         String senha = boxSenha.getText();
 
-        Usuario usuario = new Usuario("","","");
         LoginController loginController = new LoginController();
+        usuarioLogin = criaUsuario(login);
 
         if(loginController.verificarLogin(login,senha)){
-            if(usuario.tipo == 0){
+            //Admin
+            if(usuarioLogin.tipo == 0){
                 App.csEntrarApp(0);
+            }else if(usuarioLogin.tipo == 1){
+                //mudar para tela de usuario:
+                System.out.println("USUARIO!");
             }
-            System.out.println("Login realizado!");
-            // System.out.println("user: " + admin.getUsuario());
-            // System.out.println("senha: " + admin.getSenha());
+            System.out.println("Login realizado!" + usuarioLogin.tipo);
         }else{
             Error();
         }

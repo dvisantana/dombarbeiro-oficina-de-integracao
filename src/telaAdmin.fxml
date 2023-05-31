@@ -51,7 +51,7 @@
                </font></Button>
             <ImageView fitHeight="48.0" fitWidth="48.0" layoutX="34.0" layoutY="1.0">
                <image>
-                  <Image url="@../imgs/logoImg.png" />
+                  <Image url="imgs/logoImg.png" />
                </image>
             </ImageView>
             <Button fx:id="botaoFinancas" alignment="BASELINE_LEFT" layoutX="15.0" layoutY="104.0" minHeight="18.0" mnemonicParsing="false" onAction="#abrirTelaFinancas" prefHeight="24.0" prefWidth="105.0" style="-fx-background-radius: 0; -fx-background-color: 0; -fx-cursor: hand;" text="Finanças" textFill="WHITE" textOverrun="WORD_ELLIPSIS">

@@ -1,5 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<!--
+  Copyright (c) 2015, 2019, Gluon and/or its affiliates.
+  All rights reserved. Use is subject to license terms.
+
+  This file is available and licensed under the following license:
+
+  Redistribution and use in source and binary forms, with or without
+  modification, are permitted provided that the following conditions
+  are met:
+
+  - Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+  - Redistributions in binary form must reproduce the above copyright
+    notice, this list of conditions and the following disclaimer in
+    the documentation and/or other materials provided with the distribution.
+  - Neither the name of Oracle Corporation nor the names of its
+    contributors may be used to endorse or promote products derived
+    from this software without specific prior written permission.
+
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+  OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
@@ -18,12 +50,12 @@
          <children>
             <VBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Text fill="WHITE" onMouseClicked="#abrirTelaAdmin" strokeType="OUTSIDE" strokeWidth="0.0" text="Dom Barbeiro" wrappingWidth="158.6666717529297">
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Dom Barbeiro" wrappingWidth="158.6666717529297">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>
                      <cursor>
-                        <Cursor fx:constant="OPEN_HAND" />
+                        <Cursor fx:constant="HAND" />
                      </cursor>
                   </Text>
                </children>
@@ -53,17 +85,17 @@
             </Button>
             <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="25.0" layoutY="108.0">
                <image>
-                  <Image url="/imgs/icon-agenda.png" />
+                  <Image url="imgs/icon-agenda.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="25.0" layoutY="153.0" opacity="0.5">
                <image>
-                  <Image url="/imgs/icon-quadrado.png" />
+                  <Image url="imgs/icon-quadrado.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="25.0" layoutY="536.0">
                <image>
-                  <Image url="/imgs/icon-sair.png" />
+                  <Image url="imgs/icon-sair.png" />
                </image>
             </ImageView>
          </children>
@@ -72,7 +104,7 @@
          <children>
             <HBox alignment="CENTER" prefHeight="44.0" prefWidth="419.0" spacing="5.0">
                <children>
-                  <Button mnemonicParsing="false" onAction="#backOneMonth" text="&lt;" />
+                  <Button mnemonicParsing="false" text="&lt;" />
                   <Text fx:id="year" strokeType="OUTSIDE" strokeWidth="0.0" text="####">
                      <font>
                         <Font size="22.0" />
@@ -83,7 +115,7 @@
                         <Font size="22.0" />
                      </font>
                   </Text>
-                  <Button mnemonicParsing="false" onAction="#forwardOneMonth" text="&gt;" />
+                  <Button mnemonicParsing="false" text="&gt;" />
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="44.0" prefWidth="716.0" spacing="88.75">

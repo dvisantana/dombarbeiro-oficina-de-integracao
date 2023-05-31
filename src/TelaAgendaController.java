@@ -19,21 +19,6 @@ public class TelaAgendaController {
     @FXML
     private Text year;
 
-    @FXML
-    void abrirTelaAdmin(MouseEvent event) {
-
-    }
-
-    @FXML
-    void backOneMonth(ActionEvent event) {
-
-    }
-
-    @FXML
-    void forwardOneMonth(ActionEvent event) {
-
-    }
-
 
 // Abertura de Telas
     @FXML

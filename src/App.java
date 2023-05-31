@@ -55,7 +55,7 @@ public class App extends Application {
         sceneTelaAgenda = new Scene(parentTelaAgenda);
         
         primaryStage.setTitle("DomBarbeiro");
-        primaryStage.setScene(sceneTelaClientes);
+        primaryStage.setScene(sceneTelaLogin);
         primaryStage.show();        
     }
 
@@ -64,9 +64,9 @@ public class App extends Application {
             case 0:
                 primaryStage.setScene(sceneTelaAdmin);
                 break;
-            // case 1:
-            //     primaryStage.setScene(sceneTelaSecretario);
-            //     break;
+            case 1:
+                primaryStage.setScene(sceneTelaAgenda);
+                break;
         }
     }
 

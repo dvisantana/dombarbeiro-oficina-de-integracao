@@ -250,6 +250,10 @@ public class TelaServicosController implements Initializable {
         App.admAbrirServicos();
     }
     @FXML
+    private void abrirTelaFinancas(ActionEvent event) {
+        App.adminAbrirFinancas();
+    }
+    @FXML
     private void abrirTelaAdminUsuario(ActionEvent event){
         App.adminAbrirUsuarios();
     }

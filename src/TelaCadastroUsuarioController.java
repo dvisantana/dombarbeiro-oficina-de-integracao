@@ -82,7 +82,7 @@ public class TelaCadastroUsuarioController implements Initializable {
         try {
             if(comboBoxTipo.getValue().equals("0 - Admin")){
                 tipo = 0;
-            }else if(comboBoxTipo.getValue().equals("1 - Usuário")){
+            }else if(comboBoxTipo.getValue().equals("1 - Secretário")){
                 tipo = 1;
             }else{
                 tipo = 3;

@@ -63,8 +63,10 @@ public class LoginController {
             //Admin
             if(usuarioLogin.tipo == 0){
                 App.csEntrarApp(0);
-            }else if(usuarioLogin.tipo == 1){
-                //mudar para tela de usuario:
+            }
+            //Secretario
+            else if(usuarioLogin.tipo == 1){
+                App.csEntrarApp(1);
                 System.out.println("USUARIO!");
             }
             System.out.println("Login realizado!" + usuarioLogin.tipo);

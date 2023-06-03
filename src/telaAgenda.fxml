@@ -85,17 +85,17 @@
             </Button>
             <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="25.0" layoutY="108.0">
                <image>
-                  <Image url="imgs/icon-agenda.png" />
+                  <Image url="@imgs/icon-agenda.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="25.0" layoutY="153.0" opacity="0.5">
                <image>
-                  <Image url="imgs/icon-quadrado.png" />
+                  <Image url="@imgs/icon-quadrado.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="25.0" layoutY="536.0">
                <image>
-                  <Image url="imgs/icon-sair.png" />
+                  <Image url="@imgs/icon-sair.png" />
                </image>
             </ImageView>
          </children>

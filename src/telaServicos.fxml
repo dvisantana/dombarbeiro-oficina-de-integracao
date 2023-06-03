@@ -58,22 +58,22 @@
                </font></Button>
             <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="25.0" layoutY="189.0">
                <image>
-                  <Image url="imgs/icon-servico.png" />
+                  <Image url="@imgs/icon-servico.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="25.0" layoutY="148.0" opacity="0.5">
                <image>
-                  <Image url="imgs/icon-financas.png" />
+                  <Image url="@imgs/icon-financas.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="25.0" layoutY="108.0" opacity="0.5">
                <image>
-                  <Image url="imgs/icon-user.png" />
+                  <Image url="@imgs/icon-user.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="25.0" layoutY="536.0">
                <image>
-                  <Image url="imgs/icon-sair.png" />
+                  <Image url="@imgs/icon-sair.png" />
                </image>
             </ImageView>
             <Separator layoutY="520.0" prefWidth="200.0" style="-fx-background-color: #Fff;" />
@@ -84,7 +84,7 @@
             </Text>
             <ImageView fitHeight="16.0" fitWidth="16.0" layoutX="25.0" layoutY="490.0">
                <image>
-                  <Image url="imgs/icon-escudo.png" />
+                  <Image url="@imgs/icon-escudo.png" />
                </image>
             </ImageView>
          </children>
@@ -119,7 +119,7 @@
             </HBox>
             <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="600.0">
                <children>
-                  <TextField fx:id="boxDesc" prefHeight="25.0" prefWidth="390.0" promptText="Corte do Jaca" style="-fx-background-radius: 5px; -fx-background-color: #ffffff;">
+                  <TextField fx:id="boxDesc" prefHeight="25.0" prefWidth="390.0" style="-fx-background-radius: 5px; -fx-background-color: #ffffff;">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>

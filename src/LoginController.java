@@ -51,6 +51,20 @@ public class LoginController {
             }
     }
 
+    public boolean verificarLoginAdmin(String usuario, String senha){
+        try (Connection connection = ConexaoBD.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM Usuario WHERE adm_login = ? AND adm_senha = ? AND adm_tipo = 0"))
+            {
+            preparedStatement.setString(1, usuario);
+            preparedStatement.setString(2, senha);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            return resultSet.next();
+            } catch (SQLException e) {
+                e.printStackTrace();
+                return false;
+            }
+    }
+
     @FXML
     void fazerLogin(ActionEvent event) {
         String login = boxUsuario.getText();

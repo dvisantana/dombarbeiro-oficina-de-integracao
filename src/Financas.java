@@ -9,10 +9,11 @@ public class Financas {
     protected LocalDateTime data;
 
 
-    public Financas(String descricao, double valor, LocalDateTime data) {
+    public Financas(String descricao, double valor, LocalDateTime data, int tipo) {
         this.descricao = descricao;
         this.valor = valor;
         this.data = data;
+        this.tipo = tipo;
     }
 
     public int getTipo() {

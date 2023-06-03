@@ -94,29 +94,29 @@
                </font></Button>
             <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="25.0" layoutY="108.0">
                <image>
-                  <Image url="imgs/icon-user.png" />
+                  <Image url="@imgs/icon-user.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="25.0" layoutY="189.0" opacity="0.5">
                <image>
-                  <Image url="imgs/icon-servico.png" />
+                  <Image url="@imgs/icon-servico.png" />
                </image>
             </ImageView>
             <ImageView layoutX="25.0" layoutY="148.0" opacity="0.5">
                <image>
-                  <Image url="imgs/icon-financas.png" />
+                  <Image url="@imgs/icon-financas.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="25.0" layoutY="536.0">
                <image>
-                  <Image url="imgs/icon-sair.png" />
+                  <Image url="@imgs/icon-sair.png" />
                </image>
             </ImageView>
             <Button layoutX="-8.0" layoutY="107.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="10.0" style="-fx-background-radius: 0 5 5 0; -fx-background-color: #fff;" />
             <Separator layoutY="520.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="200.0" style="-fx-background-color: #fff;" />
             <ImageView fitHeight="16.0" fitWidth="16.0" layoutX="25.0" layoutY="490.0">
                <image>
-                  <Image url="imgs/icon-escudo.png" />
+                  <Image url="@imgs/icon-escudo.png" />
                </image>
             </ImageView>
          </children>
@@ -155,10 +155,27 @@
             </HBox>
             <TableView fx:id="tabelaUsuario" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#tabelaUsuarioClicked" prefHeight="300.0" prefWidth="600.0" style="-fx-background-color: #ffffff; -fx-background-radius: 5px;">
               <columns>
-                <TableColumn fx:id="nomeCol" prefWidth="150.0" resizable="false" text="Nome" />
-                <TableColumn fx:id="usuarioCol" prefWidth="150.0" resizable="false" text="Usuário" />
-                  <TableColumn fx:id="senhaCol" prefWidth="150.0" resizable="false" text="Senha" />
-                  <TableColumn fx:id="tipoCol" prefWidth="150.0" resizable="false" text="Tipo" />
+                <TableColumn fx:id="nomeCol" editable="false" prefWidth="150.0" resizable="false" text="Nome" />
+                <TableColumn fx:id="usuarioCol" editable="false" prefWidth="150.0" resizable="false" text="Usuário" />
+                  <TableColumn fx:id="senhaCol" editable="false" prefWidth="150.0" resizable="false" text="Senha">
+                     <graphic>
+                        <Button focusTraversable="false" mnemonicParsing="false" onAction="#mostrarSenha" prefHeight="16.0" prefWidth="21.0" style="-fx-background-color: transparent;">
+                           <graphic>
+                              <ImageView fx:id="iconSenha" fitHeight="16.0" fitWidth="16.0">
+                                 <image>
+                                    <Image url="@imgs/icon-password.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                     </graphic></TableColumn>
+                  <TableColumn fx:id="tipoCol" editable="false" prefWidth="150.0" resizable="false" text="Tipo" />
               </columns>
             </TableView>
             <HBox alignment="BOTTOM_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="600.0">

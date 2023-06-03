@@ -55,7 +55,7 @@ public class App extends Application {
         sceneTelaAgenda = new Scene(parentTelaAgenda);
         
         primaryStage.setTitle("DomBarbeiro");
-        primaryStage.setScene(sceneTelaLogin);
+        primaryStage.setScene(sceneTelaFinancas);
         primaryStage.show();        
     }
 

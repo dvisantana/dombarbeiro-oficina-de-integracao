@@ -1,0 +1,23 @@
+.text-area *.text {
+    -fx-text-alignment: center;
+
+}
+
+#textLucros{
+    -fx-text-fill: black;
+}
+#textDespesas{
+    -fx-text-fill: #440000;
+}
+#textGanhos{
+    -fx-text-fill: #002208;
+}
+
+.text-area .content{
+    -fx-background-color: #fff;
+    -fx-cursor: default;
+}
+
+.text-area{
+    -fx-background-color: #fff;
+}

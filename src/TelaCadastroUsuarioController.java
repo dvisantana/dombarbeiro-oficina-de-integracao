@@ -43,7 +43,7 @@ public class TelaCadastroUsuarioController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        ObservableList<String> list = FXCollections.observableArrayList("0 - Admin","1 - Usuário");
+        ObservableList<String> list = FXCollections.observableArrayList("0 - Admin","1 - Secretário");
         comboBoxTipo.setItems(list);
         
         System.out.println("Inicializar: "+ b);
@@ -68,16 +68,7 @@ public class TelaCadastroUsuarioController implements Initializable {
         String nome = boxNome.getText();
         String usuario = boxUser.getText();
         String senha = boxSenha.getText();
-
         int tipo = 0;
-
-        // if(comboBoxTipo.getValue().equals("0 - Admin")){
-        //     tipo = 0;
-        // }else if(comboBoxTipo.getValue().equals("1 - Usuário")){
-        //     tipo = 1;
-        // }else{
-        //     System.out.println("senha");
-        // }
         
         try {
             if(comboBoxTipo.getValue().equals("0 - Admin")){
@@ -92,13 +83,13 @@ public class TelaCadastroUsuarioController implements Initializable {
             System.out.println("Erro");
         }
 
-        if (nome.isEmpty() || usuario.isEmpty() || senha.isEmpty() || tipo == 3) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText(null);
-            alert.setContentText("Preencha todos os campos!");
-            alert.showAndWait();
-        } else {
-            if(b==false){
+        if(b==false){
+            if (nome.isEmpty() || usuario.isEmpty() || senha.isEmpty() || tipo == 3) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText(null);
+                alert.setContentText("Preencha todos os campos!");
+                alert.showAndWait();
+            }else{
                 try (Connection connection = ConexaoBD.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO Usuario VALUES(?,?,?,?)")){
                     preparedStatement.setString(1, nome);
                     preparedStatement.setString(2, usuario);
@@ -106,6 +97,8 @@ public class TelaCadastroUsuarioController implements Initializable {
                     preparedStatement.setInt(4, tipo);
     
                     preparedStatement.executeUpdate();
+                    clean(event);
+                    fecharJanela();
                 } catch (SQLException e) {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setHeaderText(null);
@@ -113,7 +106,24 @@ public class TelaCadastroUsuarioController implements Initializable {
                     alert.showAndWait();
                     System.out.println("Erro ao cadastrar! Provavelmente já existe um usuário com esse login cadastrado");
                 }
-            }else if(b==true){
+            }
+        }else if(b==true){
+            if (nome.isEmpty() && senha.isEmpty() && tipo == 3) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText(null);
+                alert.setContentText("Preencha os campos que deseja alterar!");
+                alert.showAndWait();
+            }else{
+                if(nome.isEmpty()){
+                    nome = u.getNome();
+                }
+                if(senha.isEmpty()){
+                    senha = u.getSenha();
+                }
+                if(tipo == 3){
+                    tipo = u.getTipo();
+                }
+    
                 try (Connection connection = ConexaoBD.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement("UPDATE Usuario SET "
                 + "`adm_nome`=?,"
                 + "`adm_login`=?,"
@@ -125,16 +135,14 @@ public class TelaCadastroUsuarioController implements Initializable {
                     preparedStatement.setInt(4, tipo);
     
                     preparedStatement.executeUpdate();
+                    clean(event);
+                    fecharJanela();
                 } catch (SQLException e) {
                     // e.printStackTrace();
-                    System.out.println("ERRO AQUI TRUE");
+                    System.out.println("ERRO AQUI");
                 }
             }
-            
-            clean(event);
-            fecharJanela();
         }
-
     }
 
 
@@ -146,12 +154,12 @@ public class TelaCadastroUsuarioController implements Initializable {
 
     @FXML
     private void clean(ActionEvent event) {
-        boxNome.setText(null);
+        boxNome.setText("");
         if(b==false){
-            boxUser.setText(null);
+            boxUser.setText("");
         }
-        boxSenha.setText(null);
-        comboBoxTipo.setValue(null);
+        boxSenha.setText("");
+        comboBoxTipo.setValue("");
     }
 
 

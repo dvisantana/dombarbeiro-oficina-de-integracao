@@ -17,12 +17,14 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
 
 public class TelaFinancasController implements Initializable{
 
@@ -51,7 +53,7 @@ public class TelaFinancasController implements Initializable{
     private TableColumn<Financas, String> descricaoCol;
 
     @FXML
-    private TableColumn<Financas, String> valorCol;
+    private TableColumn<Financas, Double> valorCol;
 
     @FXML
     private TextArea textDespesas;
@@ -124,6 +126,13 @@ public class TelaFinancasController implements Initializable{
     private void calcLucros(){
         Double lucro = 0.0;
         lucro = somaGanhos()-somaDespesas();
+        if(lucro<0){
+            textLucros.setStyle("-fx-text-fill: red;");
+        }else if(lucro>0){
+            textLucros.setStyle("-fx-text-fill: green;");
+        }else{
+            textLucros.setStyle("-fx-text-fill: black;");
+        }
         textLucros.setText("R$ " + lucro.toString());
     }
 
@@ -177,14 +186,14 @@ public class TelaFinancasController implements Initializable{
         //Com filtro de data:
         if(filtroData){
             int mes = mesFiltroSelecionado();
-            try (Connection connection = ConexaoBD.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement("SELECT fin_descricao,fin_quantia,fin_data FROM Finanças WHERE MONTH(fin_data) = ?;"))
+            try (Connection connection = ConexaoBD.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement("SELECT fin_descricao,fin_quantia,fin_data,fin_tipo FROM Finanças WHERE MONTH(fin_data) = ?;"))
             {
                 preparedStatement.setInt(1, mes);
                 ResultSet resultSet = preparedStatement.executeQuery();
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
     
                 while(resultSet.next()){
-                    ListaFinancas.add(new Financas(resultSet.getString(1), Double.parseDouble(resultSet.getString(2)), LocalDateTime.parse(resultSet.getString(3), formatter)));
+                    ListaFinancas.add(new Financas(resultSet.getString(1), Double.parseDouble(resultSet.getString(2)), LocalDateTime.parse(resultSet.getString(3), formatter), resultSet.getInt(4)));
                     tabelaFinancas.setItems(ListaFinancas);
                 }
     
@@ -194,13 +203,14 @@ public class TelaFinancasController implements Initializable{
         }
         // Se não precisar filtrar: (normal)
         else{
-            try (Connection connection = ConexaoBD.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement("SELECT fin_descricao,fin_quantia,fin_data FROM Finanças;"))
+            try (Connection connection = ConexaoBD.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement("SELECT fin_descricao,fin_quantia,fin_data,fin_tipo FROM Finanças;"))
             {
                 ResultSet resultSet = preparedStatement.executeQuery();
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
     
                 while(resultSet.next()){
-                    ListaFinancas.add(new Financas(resultSet.getString(1), Double.parseDouble(resultSet.getString(2)), LocalDateTime.parse(resultSet.getString(3), formatter)));
+                    ListaFinancas.add(new Financas(resultSet.getString(1), Double.parseDouble(resultSet.getString(2)), LocalDateTime.parse(resultSet.getString(3), formatter), resultSet.getInt(4)));
                     tabelaFinancas.setItems(ListaFinancas);
                 }
     
@@ -208,6 +218,21 @@ public class TelaFinancasController implements Initializable{
                 e.printStackTrace();
             }
         }
+
+        //MUDAR COR DE UMA CELULA DA COLUNA (TENTANDO RESOVLER)
+        valorCol.setCellFactory(col -> new TableCell<>() {
+            @Override 
+            protected void updateItem(Double item, boolean empty) {
+                super.updateItem(item,  empty);
+                if (empty || item == null) {
+                    setText(null);
+                    setGraphic(null);
+                } else {
+                    setText(item.toString());
+                }
+            }
+        });
+
         calcLucros();
     }
 
@@ -275,7 +300,11 @@ public class TelaFinancasController implements Initializable{
 
     @FXML
     private void filtrarMesFinancas(ActionEvent event){
-        filtroData = true;
+        if(comboBoxMes.valueProperty().getValue() == null){
+            filtroData = false;
+        }else{
+            filtroData = true;
+        }
         carregarTabela(null);
         System.out.println(mesFiltroSelecionado());
     }

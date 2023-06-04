@@ -7,10 +7,10 @@
     -fx-text-fill: black;
 }
 #textDespesas{
-    -fx-text-fill: #440000;
+    -fx-text-fill: #000000;
 }
 #textGanhos{
-    -fx-text-fill: #002208;
+    -fx-text-fill: #000000;
 }
 
 .text-area .content{

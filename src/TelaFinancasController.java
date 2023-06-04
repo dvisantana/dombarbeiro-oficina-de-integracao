@@ -219,7 +219,7 @@ public class TelaFinancasController implements Initializable{
             }
         }
 
-        //MUDAR COR DE UMA CELULA DA COLUNA (TENTANDO RESOVLER)
+        //MUDAR COR DE UMA CELULA DA COLUNA
         valorCol.setCellFactory(col -> new TableCell<>() {
             @Override 
             protected void updateItem(Double item, boolean empty) {
@@ -228,7 +228,13 @@ public class TelaFinancasController implements Initializable{
                     setText(null);
                     setGraphic(null);
                 } else {
-                    setText(item.toString());
+                    if(tabelaFinancas.getItems().get(getIndex()).getTipo() == 1){
+                        setText(item.toString());
+                        setStyle("-fx-text-fill: red");
+                    }else{
+                        setText(item.toString());
+                        setStyle("-fx-text-fill: green");
+                    }
                 }
             }
         });

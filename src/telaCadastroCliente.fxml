@@ -35,7 +35,7 @@
       <HBox alignment="CENTER" prefHeight="39.0" prefWidth="300.0">
          <children>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Telefone:" wrappingWidth="55.619140625" />
-            <TextField fx:id="boxTelefone" />
+            <TextField fx:id="boxTelefone" onKeyReleased="#formatarNumCel" promptText="(XX)XXXXX-XXXX" />
          </children>
          <VBox.margin>
             <Insets top="5.0" />

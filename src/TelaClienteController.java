@@ -102,14 +102,18 @@ public class TelaClienteController implements Initializable{
 
             if(procurarOn){
                 while(resultSet.next()){
-                    if(boxPesquisar.getText().equalsIgnoreCase(resultSet.getString(2))){
-                        ListaPessoa.add(new Pessoa(resultSet.getString(2), resultSet.getInt(3), null));
+                    if(resultSet.getString(2).toLowerCase().contains((boxPesquisar.getText().toLowerCase()))){
+                        ListaPessoa.add(new Pessoa(resultSet.getString(2), resultSet.getString(3), null));
                         tabelaPessoa.setItems(ListaPessoa);
                     }
+                    // if(boxPesquisar.getText().equalsIgnoreCase(resultSet.getString(2))){
+                    //     ListaPessoa.add(new Pessoa(resultSet.getString(2), resultSet.getInt(3), null));
+                    //     tabelaPessoa.setItems(ListaPessoa);
+                    // }
                 }
             }else{
                 while(resultSet.next()){
-                    ListaPessoa.add(new Pessoa(resultSet.getString(2), resultSet.getInt(3), null));
+                    ListaPessoa.add(new Pessoa(resultSet.getString(2), resultSet.getString(3), null));
                     tabelaPessoa.setItems(ListaPessoa);
                 }
             }

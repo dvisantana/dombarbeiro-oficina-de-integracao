@@ -2,14 +2,14 @@ public class Pessoa{
 
     protected int id;
     protected String nome;
-    protected int telefone;
+    protected String telefone;
     protected String tipo;
 
 
     public Pessoa() {
     }
 
-    public Pessoa(String nome, int telefone, String tipo) {
+    public Pessoa(String nome, String telefone, String tipo) {
         this.nome = nome;
         this.telefone = telefone;
         this.tipo = tipo;
@@ -35,10 +35,10 @@ public class Pessoa{
         this.tipo = tipo;
     }
 
-    public int getTelefone() {
+    public String getTelefone() {
         return telefone;
     }
-    public void setTelefone(int telefone) {
+    public void setTelefone(String telefone) {
         this.telefone = telefone;
     }    
 }

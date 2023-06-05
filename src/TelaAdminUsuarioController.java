@@ -93,7 +93,6 @@ public class TelaAdminUsuarioController implements Initializable{
         carregarTabela(null);
     }
     
-
     @FXML
     private void carregarTabela(ActionEvent event){
         ListaUsuarios.clear();

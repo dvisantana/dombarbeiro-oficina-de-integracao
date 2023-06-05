@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
+import Configs.TextFieldFormatter;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -13,6 +14,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -71,61 +73,74 @@ public class TelaCadastroClienteController implements Initializable {
     }
 
     @FXML
-    void cadastrarCliente(ActionEvent event){
+    private void cadastrarCliente(ActionEvent event){
         String nome = boxNome.getText();
         String tipo = verificarTipoCliente();
-        int telefone = 0;
+        String telefone = boxTelefone.getText();
 
-        try {
-            telefone = Integer.parseInt(boxTelefone.getText());
-        } catch (Exception e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText(null);
-            alert.setContentText("Número de telefone inválido!");
-            alert.showAndWait();
-        }
+        int contador = 0;
 
-        if (nome.isEmpty() || telefone == 0 || tipo.isEmpty()) {
+        if (nome.isEmpty() || telefone.isEmpty() || tipo.isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(null);
             alert.setContentText("Preencha todos os campos!");
             alert.showAndWait();
         } else {
-            if(b==false){
-                try (Connection connection = ConexaoBD.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO Pessoa (pes_nome,pes_telefone,pes_tipo) VALUES(?,?,?)")){
-                    preparedStatement.setString(1, nome);
-                    preparedStatement.setInt(2, telefone);
-                    preparedStatement.setString(3, tipo);
-    
-                    preparedStatement.executeUpdate();
-                } catch (SQLException e) {
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setHeaderText(null);
-                    alert.setContentText("Erro ao cadastrar!");
-                    alert.showAndWait();
-                }
-            }else if(b==true){
-                try (Connection connection = ConexaoBD.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement("UPDATE Pessoa SET "
-                + "`pes_nome`=?,"
-                + "`pes_telefone`=?,"
-                + "`pes_tipo`= ? WHERE adm_nome = '"+c.getId()+"'")){
-                    preparedStatement.setString(1, nome);
-                    preparedStatement.setInt(2, telefone);
-                    preparedStatement.setString(3, tipo);
-    
-                    preparedStatement.executeUpdate();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                    System.out.println("ERRO!!");
+            for(int i = 0;i<14;i++){
+                if(boxTelefone.getText().charAt(i) == ' ' || boxTelefone.getText().charAt(i) == '-' || boxTelefone.getText().charAt(i) == '(' || boxTelefone.getText().charAt(i) == ')'){
+                }else{
+                    contador++;
                 }
             }
-            
-            clean(event);
-            fecharJanela();
+            if(contador == 11){
+                if(b==false){
+                    try (Connection connection = ConexaoBD.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO Pessoa (pes_nome,pes_telefone,pes_tipo) VALUES(?,?,?)")){
+                        preparedStatement.setString(1, nome);
+                        preparedStatement.setString(2, telefone);
+                        preparedStatement.setString(3, tipo);
+        
+                        preparedStatement.executeUpdate();
+                    } catch (SQLException e) {
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setHeaderText(null);
+                        alert.setContentText("Erro ao cadastrar! Provavelmente numero de telefone ja cadastrado");
+                        alert.showAndWait();
+                    }
+                }else if(b==true){
+                    try (Connection connection = ConexaoBD.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement("UPDATE Pessoa SET "
+                    + "`pes_nome`=?,"
+                    + "`pes_telefone`=?,"
+                    + "`pes_tipo`= ? WHERE adm_nome = '"+c.getId()+"'")){
+                        preparedStatement.setString(1, nome);
+                        preparedStatement.setString(2, telefone);
+                        preparedStatement.setString(3, tipo);
+        
+                        preparedStatement.executeUpdate();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                        System.out.println("ERRO!!");
+                    }
+                }
+                clean(event);
+                fecharJanela();
+            }else{
+                Alert alertTel = new Alert(Alert.AlertType.ERROR);
+                alertTel.setHeaderText(null);
+                alertTel.setContentText("Número de telefone deve conter 11 digitos!");
+                alertTel.showAndWait();
+            }
         }
 
     }
 
+    @FXML
+    private void formatarNumCel(KeyEvent event){
+        TextFieldFormatter tff = new TextFieldFormatter();
+        tff.setMask("(##)#####-####");
+        tff.setCaracteresValidos("0123456789");
+        tff.setTf(boxTelefone);
+        tff.formatter();
+    }
 
     @FXML
     private void fecharJanela(){

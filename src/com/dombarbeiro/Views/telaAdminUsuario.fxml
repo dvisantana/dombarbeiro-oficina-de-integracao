@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  Copyright (c) 2015, 2019, Gluon and/or its affiliates.
+  All rights reserved. Use is subject to license terms.
+
+  This file is available and licensed under the following license:
+
+  Redistribution and use in source and binary forms, with or without
+  modification, are permitted provided that the following conditions
+  are met:
+
+  - Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+  - Redistributions in binary form must reproduce the above copyright
+    notice, this list of conditions and the following disclaimer in
+    the documentation and/or other materials provided with the distribution.
+  - Neither the name of Oracle Corporation nor the names of its
+    contributors may be used to endorse or promote products derived
+    from this software without specific prior written permission.
+
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+  OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="1024.0" style="-fx-background-color: #E6E6E6;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.com.dombarbeiro.Controllers.TelaAdminUsuarioController">
+   <children>
+      <Pane prefHeight="576.0" prefWidth="200.0" style="-fx-background-color: #5E0B15;">
+         <children>
+            <VBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Dom Barbeiro">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Text>
+               </children>
+            </VBox>
+            <VBox layoutX="60.0" layoutY="100.0" prefHeight="200.0" prefWidth="140.0">
+               <children>
+                  <Button alignment="BASELINE_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="18.0" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="70.0" style="-fx-background-color: 0; -fx-cursor: hand;" text="Usuários" textFill="WHITE" textOverrun="WORD_ELLIPSIS">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Button>
+                  <Button alignment="BASELINE_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="18.0" minWidth="-Infinity" mnemonicParsing="false" onAction="#abrirTelaFinancas" opacity="0.5" prefHeight="40.0" prefWidth="70.0" style="-fx-background-radius: 0; -fx-background-color: 0; -fx-cursor: hand;" text="Finanças" textFill="WHITE" textOverrun="WORD_ELLIPSIS">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Button>
+                  <Button alignment="BASELINE_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="18.0" minWidth="-Infinity" mnemonicParsing="false" onAction="#abrirTelaServicos" opacity="0.5" prefHeight="40.0" prefWidth="70.0" style="-fx-background-radius: 0; -fx-background-color: 0; -fx-cursor: hand;" text="Serviços" textFill="WHITE" textOverrun="WORD_ELLIPSIS">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Button>
+               </children>
+            </VBox>
+            <Text fill="WHITE" layoutX="50.0" layoutY="502.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Modo Administrador">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Text>
+            <Button fx:id="botaoSair" alignment="BASELINE_LEFT" layoutX="50.0" layoutY="536.0" minHeight="18.0" mnemonicParsing="false" onAction="#sairApp" prefHeight="24.0" prefWidth="38.0" style="-fx-background-radius: 0; -fx-background-color: 0 0 0 20; -fx-cursor: hand;" text="Sair" textFill="WHITE" textOverrun="WORD_ELLIPSIS">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Button>
+            <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="25.0" layoutY="108.0">
+               <image>
+                  <Image url="src/com/dombarbeiro/imgs/icon-user.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="25.0" layoutY="189.0" opacity="0.5">
+               <image>
+                  <Image url="src/com/dombarbeiro/imgs/icon-servico.png" />
+               </image>
+            </ImageView>
+            <ImageView layoutX="25.0" layoutY="148.0" opacity="0.5">
+               <image>
+                  <Image url="src/com/dombarbeiro/imgs/icon-financas.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="25.0" layoutY="536.0">
+               <image>
+                  <Image url="src/com/dombarbeiro/imgs/icon-sair.png" />
+               </image>
+            </ImageView>
+            <Button layoutX="-8.0" layoutY="107.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="10.0" style="-fx-background-radius: 0 5 5 0; -fx-background-color: #fff;" />
+            <Separator layoutY="520.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="200.0" style="-fx-background-color: #fff;" />
+            <ImageView fitHeight="16.0" fitWidth="16.0" layoutX="25.0" layoutY="490.0">
+               <image>
+                  <Image url="src/com/dombarbeiro/imgs/icon-escudo.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <VBox alignment="CENTER" layoutX="200.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="824.0">
+         <children>
+            <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="600.0">
+               <children>
+                  <Text fill="#5e0b15" strokeType="OUTSIDE" strokeWidth="0.0" text="Cadastro de Usuários">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Text>
+               </children>
+            </VBox>
+            <Label text="Buscar pelo nome">
+               <VBox.margin>
+                  <Insets right="500.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="600.0">
+               <children>
+                  <TextField fx:id="boxPesquisar" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="530.0" style="-fx-background-radius: 5px; -fx-background-color: #ffffff;" />
+                  <Button fx:id="botaoPesquisar" mnemonicParsing="false" onAction="#procurarTabela" prefHeight="24.0" prefWidth="60.0" style="-fx-background-color: #5E0B15; -fx-background-radius: 5px;" text="Buscar" textFill="WHITE">
+                     <font>
+                        <Font name="Verdana" size="12.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+            <TableView fx:id="tabelaUsuario" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#tabelaUsuarioClicked" prefHeight="300.0" prefWidth="600.0" style="-fx-background-color: #ffffff; -fx-background-radius: 5px;">
+              <columns>
+                <TableColumn fx:id="nomeCol" editable="false" prefWidth="150.0" resizable="false" text="Nome" />
+                <TableColumn fx:id="usuarioCol" editable="false" prefWidth="150.0" resizable="false" text="Usuário" />
+                  <TableColumn fx:id="senhaCol" editable="false" prefWidth="150.0" resizable="false" text="Senha">
+                     <graphic>
+                        <Button focusTraversable="false" mnemonicParsing="false" onAction="#mostrarSenha" prefHeight="16.0" prefWidth="21.0" style="-fx-background-color: transparent;">
+                           <graphic>
+                              <ImageView fx:id="iconSenha" fitHeight="16.0" fitWidth="16.0">
+                                 <image>
+                                    <Image url="src/com/dombarbeiro/imgs/icon-password.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                     </graphic></TableColumn>
+                  <TableColumn fx:id="tipoCol" editable="false" prefWidth="150.0" resizable="false" text="Tipo" />
+              </columns>
+            </TableView>
+            <HBox alignment="BOTTOM_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="600.0">
+               <children>
+                  <Button fx:id="botaoCadastrarUsuario" mnemonicParsing="false" onAction="#abrirCadastroUsuario" prefHeight="24.0" prefWidth="81.0" style="-fx-background-color: #5E0B15; -fx-background-radius: 5px;" text="Cadastrar" textFill="WHITE">
+                     <font>
+                        <Font name="Verdana" size="12.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="botaoEditarUsuario" mnemonicParsing="false" onAction="#abrirEditarUsuario" style="-fx-background-color: #5E0B15;" text="Editar" textFill="WHITE">
+                     <font>
+                        <Font name="Verdana" size="12.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="botaoRemoverUsuario" mnemonicParsing="false" onAction="#removerUsuario" style="-fx-background-color: #5E0B15;" text="Remover" textFill="WHITE">
+                     <font>
+                        <Font name="Verdana" size="12.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</Pane>

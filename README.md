@@ -2,12 +2,11 @@
   <p>🪒 Projeto Dom Barbeiro</p>
 </h1>
 
-## ✨ Seja bem-vindo!
 ## ❔ Sobre
 
 > Esse projeto foi realizado para compor um trabalho de Oficina de Integração 1. Tal matéria está presente no curso de Engenharia de Software da UTFPR-CP.
 
-## 📈 Objetivos
+## 📌 Objetivos
 
 O `Dom Barbeiro` vem para mudar a realidade dessas barbearias, facilitando o gerenciamento de horários e finanças.<br>
 O projeto tem como objetivo facilitar e organizar  o sistema de gerenciamento de clientes da barbearia para ter um melhor controle e administração de seu tempo e dos seus faturamentos.<br>

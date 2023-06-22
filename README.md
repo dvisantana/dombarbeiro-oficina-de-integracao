@@ -1,3 +1,7 @@
+<h1>
+  <img src="./src/imgs/logoImg.png"/>
+</h1>
+
 ## Getting Started
 
 Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.

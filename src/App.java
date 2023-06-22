@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -51,6 +52,9 @@ public class App extends Application {
         sceneTelaClientes = new Scene(parentTelaClientes);
         sceneTelaAgenda = new Scene(parentTelaAgenda);
         
+        Image image = new Image("/imgs/logoImg.png");
+
+        primaryStage.getIcons().add(image);
         primaryStage.setTitle("DomBarbeiro");
         primaryStage.setScene(sceneTelaLogin);
         primaryStage.show();        

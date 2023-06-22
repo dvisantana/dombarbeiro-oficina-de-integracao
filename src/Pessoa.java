@@ -9,12 +9,28 @@ public class Pessoa{
     public Pessoa() {
     }
 
+    public Pessoa(int id,String nome) {
+        this.id = id;
+        this.nome = nome;
+    }
+
     public Pessoa(String nome, String telefone, String tipo) {
         this.nome = nome;
         this.telefone = telefone;
         this.tipo = tipo;
     }
 
+    public Pessoa(int id, String nome, String telefone, String tipo) {
+        this.id = id;
+        this.nome = nome;
+        this.telefone = telefone;
+        this.tipo = tipo;
+    }
+
+    @Override
+    public String toString() {
+        return nome;
+    }
     
     public int getId() {
         return id;

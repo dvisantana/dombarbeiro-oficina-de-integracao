@@ -72,28 +72,36 @@ public class TelaCadastroClienteController implements Initializable {
         }
     }
 
+    private boolean verificarNumeroTelefone(TextField boxTelefone){
+        int contador = 0;
+        for(int i = 0;i<14;i++){
+            if(boxTelefone.getText().charAt(i) == ' ' || boxTelefone.getText().charAt(i) == '-' || boxTelefone.getText().charAt(i) == '(' || boxTelefone.getText().charAt(i) == ')'){
+            }else{
+                contador++;
+            }
+        }
+        if(contador == 11){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
     @FXML
     private void cadastrarCliente(ActionEvent event){
         String nome = boxNome.getText();
         String tipo = verificarTipoCliente();
         String telefone = boxTelefone.getText();
 
-        int contador = 0;
 
-        if (nome.isEmpty() || telefone.isEmpty() || tipo.isEmpty()) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText(null);
-            alert.setContentText("Preencha todos os campos!");
-            alert.showAndWait();
-        } else {
-            for(int i = 0;i<14;i++){
-                if(boxTelefone.getText().charAt(i) == ' ' || boxTelefone.getText().charAt(i) == '-' || boxTelefone.getText().charAt(i) == '(' || boxTelefone.getText().charAt(i) == ')'){
-                }else{
-                    contador++;
-                }
-            }
-            if(contador == 11){
-                if(b==false){
+        if(b==false){
+            if (nome.isEmpty() || telefone.isEmpty() || tipo.isEmpty()) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText(null);
+                alert.setContentText("Preencha todos os campos!");
+                alert.showAndWait();
+            }else{
+                if(verificarNumeroTelefone(boxTelefone)){
                     try (Connection connection = ConexaoBD.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO Pessoa (pes_nome,pes_telefone,pes_tipo) VALUES(?,?,?)")){
                         preparedStatement.setString(1, nome);
                         preparedStatement.setString(2, telefone);
@@ -106,30 +114,54 @@ public class TelaCadastroClienteController implements Initializable {
                         alert.setContentText("Erro ao cadastrar! Provavelmente numero de telefone ja cadastrado");
                         alert.showAndWait();
                     }
-                }else if(b==true){
-                    try (Connection connection = ConexaoBD.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement("UPDATE Pessoa SET "
-                    + "`pes_nome`=?,"
-                    + "`pes_telefone`=?,"
-                    + "`pes_tipo`= ? WHERE adm_nome = '"+c.getId()+"'")){
-                        preparedStatement.setString(1, nome);
-                        preparedStatement.setString(2, telefone);
-                        preparedStatement.setString(3, tipo);
-        
-                        preparedStatement.executeUpdate();
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                        System.out.println("ERRO!!");
-                    }
+                }else{
+                    Alert alertTel = new Alert(Alert.AlertType.ERROR);
+                    alertTel.setHeaderText(null);
+                    alertTel.setContentText("Número de telefone deve conter 11 digitos!");
+                    alertTel.showAndWait();
+                }   
+            }
+        }else if(b==true){
+            boolean confirmarEdicao = true;
+
+            if(nome.isEmpty()){
+                nome = c.getNome();
+            }
+            if(telefone.isEmpty()){
+                telefone = c.getTelefone();
+            }else{
+                confirmarEdicao = verificarNumeroTelefone(boxTelefone);
+            }
+            if(tipo.isEmpty()){
+                tipo = c.getTipo();
+            }
+
+            if(confirmarEdicao){
+                try (Connection connection = ConexaoBD.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement("UPDATE Pessoa SET "
+                + "`pes_nome`=?,"
+                + "`pes_telefone`=?,"
+                + "`pes_tipo`= ? WHERE pes_id = '"+c.getId()+"'")){
+                    preparedStatement.setString(1, nome);
+                    preparedStatement.setString(2, telefone);
+                    preparedStatement.setString(3, tipo);
+
+                    preparedStatement.executeUpdate();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                    System.out.println("ERRO!!");
                 }
-                clean(event);
-                fecharJanela();
             }else{
                 Alert alertTel = new Alert(Alert.AlertType.ERROR);
                 alertTel.setHeaderText(null);
                 alertTel.setContentText("Número de telefone deve conter 11 digitos!");
                 alertTel.showAndWait();
-            }
+            }   
+
         }
+        clean(event);
+        fecharJanela();
+
+
 
     }
 

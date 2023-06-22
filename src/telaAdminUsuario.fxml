@@ -54,7 +54,7 @@
          <children>
             <VBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Text fill="WHITE" onMouseClicked="#abrirTelaAdmin" strokeType="OUTSIDE" strokeWidth="0.0" text="Dom Barbeiro">
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Dom Barbeiro">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>

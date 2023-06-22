@@ -49,7 +49,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="1024.0" style="-fx-background-color: #E6E6E6;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TelaClienteController">
    <children>
-      <Pane prefHeight="576.0" prefWidth="200.0" style="-fx-background-color: #77A0A9;">
+      <Pane prefHeight="576.0" prefWidth="200.0" style="-fx-background-color: #5E0B15;">
          <children>
             <VBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
@@ -65,12 +65,12 @@
             </VBox>
             <VBox alignment="TOP_RIGHT" layoutX="60.0" layoutY="100.0" prefHeight="200.0" prefWidth="140.0" spacing="5.0">
                <children>
-                  <Button alignment="BASELINE_LEFT" minHeight="40.0" mnemonicParsing="false" onAction="#abrirTelaAgenda" opacity="0.5" prefHeight="24.0" prefWidth="140.0" style="-fx-background-radius: 20 0 0 20; -fx-background-color: #77A0A9; -fx-cursor: hand;" text="Agenda" textFill="WHITE" textOverrun="WORD_ELLIPSIS">
+                  <Button alignment="BASELINE_LEFT" minHeight="40.0" mnemonicParsing="false" onAction="#abrirTelaAgenda" opacity="0.5" prefHeight="24.0" prefWidth="140.0" style="-fx-background-radius: 20 0 0 20; -fx-background-color: #5E0B15; -fx-cursor: hand;" text="Agenda" textFill="WHITE" textOverrun="WORD_ELLIPSIS">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" minHeight="40.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="140.0" style="-fx-background-radius: 20 0 0 20; -fx-background-color: #77A0A9; -fx-cursor: hand;" text="Clientes" textFill="WHITE" textOverrun="WORD_ELLIPSIS">
+                  <Button alignment="BASELINE_LEFT" minHeight="40.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="140.0" style="-fx-background-radius: 20 0 0 20; -fx-background-color: #5E0B15; -fx-cursor: hand;" text="Clientes" textFill="WHITE" textOverrun="WORD_ELLIPSIS">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
@@ -110,7 +110,7 @@
          <children>
             <VBox prefHeight="50.0" prefWidth="600.0">
                <children>
-                  <Text fill="#77a0a9" strokeType="OUTSIDE" strokeWidth="0.0" text="Cadastro de Clientes">
+                  <Text fill="#5e0b15" strokeType="OUTSIDE" strokeWidth="0.0" text="Cadastro de Clientes">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>
@@ -128,7 +128,7 @@
             <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="600.0">
                <children>
                   <TextField fx:id="boxPesquisar" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="539.0" style="-fx-background-color: #ffffff; -fx-border-radius: 5px;" />
-                  <Button fx:id="botaoPesquisar" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#procurarTabela" style="-fx-background-color: #77a0a9; -fx-border-radius: 5px;" text="Buscar" textFill="WHITE">
+                  <Button fx:id="botaoPesquisar" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#procurarTabela" style="-fx-background-color: #5E0B15; -fx-border-radius: 5px;" text="Buscar" textFill="WHITE">
                      <HBox.margin>
                         <Insets left="10.0" />
                      </HBox.margin>
@@ -143,8 +143,8 @@
             </TableView>
             <HBox alignment="BOTTOM_LEFT" prefHeight="40.0" prefWidth="600.0">
                <children>
-                  <Button fx:id="botaoCadastrarPessoa" mnemonicParsing="false" onAction="#abrirCadastroPessoa" style="-fx-background-color: #77a0a9; -fx-border-radius: 5px;" text="Cadastrar" textFill="WHITE" />
-                  <Button fx:id="botaoEditarPessoa" mnemonicParsing="false" onAction="#abrirEditarPessoa" style="-fx-background-color: #77a0a9; -fx-border-radius: 5px;" text="Editar" textFill="WHITE">
+                  <Button fx:id="botaoCadastrarPessoa" mnemonicParsing="false" onAction="#abrirCadastroPessoa" style="-fx-background-color: #5E0B15; -fx-border-radius: 5px;" text="Cadastrar" textFill="WHITE" />
+                  <Button fx:id="botaoEditarPessoa" mnemonicParsing="false" onAction="#abrirEditarPessoa" style="-fx-background-color: #5E0B15; -fx-border-radius: 5px;" text="Editar" textFill="WHITE">
                      <HBox.margin>
                         <Insets left="10.0" />
                      </HBox.margin>

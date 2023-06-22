@@ -234,13 +234,22 @@ public class TelaServicosController implements Initializable {
         
     }
 
-
+    public double getValorServicoByName(String nome){
+        double valorServico = 0.0;
+        try (Connection connection = ConexaoBD.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement("SELECT ser_preco FROM Servicos WHERE ser_nome=?"))
+        {
+            preparedStatement.setString(1, nome);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while(resultSet.next()){
+                valorServico = resultSet.getDouble(1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return valorServico;
+    }
 
     //Abertura Telas
-    @FXML
-    private void abrirTelaAdmin(MouseEvent event) {
-        App.abrirAdmin();
-    }
     @FXML
     private void sairApp(ActionEvent event) {
         App.csSairApp();

@@ -264,9 +264,8 @@ public class TelaFinancasController implements Initializable{
             } catch (SQLException e) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setHeaderText(null);
-                alert.setContentText("Erro ao cadastrar! Provavelmente já existe um usuário com esse login cadastrado");
+                alert.setContentText("Erro ao adicionar despesa!");
                 alert.showAndWait();
-                System.out.println("Erro ao cadastrar! Provavelmente já existe um usuário com esse login cadastrado");
             }
         }
         clean();
@@ -302,6 +301,44 @@ public class TelaFinancasController implements Initializable{
         }
         clean();
         carregarTabela(null);
+    }
+    
+    public void addLucro(Atendimento atd){
+        TelaServicosController tsc = new TelaServicosController();
+        String descricao = atd.getCliente().getNome() + " - " + atd.getServico().getDesc();
+        Double valor = tsc.getValorServicoByName(atd.getServico().getDesc());
+
+        try (Connection connection = ConexaoBD.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO Finanças (fin_tipo,fin_quantia,fin_descricao)  VALUES(?,?,?);")){
+            preparedStatement.setInt(1, 0);
+            preparedStatement.setDouble(2, valor);
+            preparedStatement.setString(3, descricao);
+
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setContentText("Erro adicionar lucro!");
+            alert.showAndWait();
+        }
+    }
+    
+    public void addDespesa(Atendimento atd){
+        TelaServicosController tsc = new TelaServicosController();
+        String descricao = atd.getCliente().getNome() + " - " + atd.getServico().getDesc();
+        Double valor = tsc.getValorServicoByName(atd.getServico().getDesc());
+
+        try (Connection connection = ConexaoBD.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO Finanças (fin_tipo,fin_quantia,fin_descricao)  VALUES(?,?,?);")){
+            preparedStatement.setInt(1, 1);
+            preparedStatement.setDouble(2, valor);
+            preparedStatement.setString(3, descricao);
+
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setContentText("Erro adicionar lucro!");
+            alert.showAndWait();
+        }
     }
 
     @FXML
@@ -377,11 +414,6 @@ public class TelaFinancasController implements Initializable{
 
     // @FXML
     // private TableView<?> tabelaServico;
-
-    @FXML
-    private void abrirTelaAdmin(MouseEvent event) {
-        App.abrirAdmin();
-    }
 
     @FXML
     private void abrirTelaAdminUsuario(ActionEvent event) {

@@ -8,6 +8,11 @@ public class Servico{
         this.valor = valor;
     }
 
+    @Override
+    public String toString(){
+        return desc;
+    }
+
     public String getDesc() {
         return desc;
     }

@@ -234,6 +234,7 @@ public class TelaAdminUsuarioController implements Initializable{
             if(confirm == 0){
                 try (Connection connection = ConexaoBD.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM Usuario WHERE adm_login=?")){
                     preparedStatement.setString(1, u.getUsuario());
+                    System.out.println(u.getUsuario());
                     ListaUsuarios.remove(u);
                     preparedStatement.executeUpdate();
                     carregarTabela(null);
@@ -300,14 +301,7 @@ public class TelaAdminUsuarioController implements Initializable{
             
     }
 
-    //Abertura de Telas
-    @FXML
-    private void abrirTelaAdmin(MouseEvent event) {
-        mostrarSenha = false;
-        carregarTabela(null);
-        App.abrirAdmin();
-    }
-    
+    //Abertura de Telas    
     @FXML
     private void abrirTelaServicos(ActionEvent event) {
         mostrarSenha = false;

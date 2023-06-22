@@ -103,7 +103,7 @@ public class TelaClienteController implements Initializable{
             if(procurarOn){
                 while(resultSet.next()){
                     if(resultSet.getString(2).toLowerCase().contains((boxPesquisar.getText().toLowerCase()))){
-                        ListaPessoa.add(new Pessoa(resultSet.getString(2), resultSet.getString(3), null));
+                        ListaPessoa.add(new Pessoa(resultSet.getInt(1),resultSet.getString(2), resultSet.getString(3), resultSet.getString(4)));
                         tabelaPessoa.setItems(ListaPessoa);
                     }
                     // if(boxPesquisar.getText().equalsIgnoreCase(resultSet.getString(2))){
@@ -113,7 +113,7 @@ public class TelaClienteController implements Initializable{
                 }
             }else{
                 while(resultSet.next()){
-                    ListaPessoa.add(new Pessoa(resultSet.getString(2), resultSet.getString(3), null));
+                    ListaPessoa.add(new Pessoa(resultSet.getInt(1),resultSet.getString(2), resultSet.getString(3), resultSet.getString(4)));
                     tabelaPessoa.setItems(ListaPessoa);
                 }
             }

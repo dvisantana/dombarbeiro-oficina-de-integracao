@@ -2,6 +2,10 @@
   <p>🪒 Projeto Dom Barbeiro</p>
 </h1>
 
+## 🔗 Links
+- [Documento](https://docs.google.com/document/d/1k55jOVcp49jbigmHLsGyhUNcBccmz8L6/edit?usp=sharing&ouid=100321836564676191414&rtpof=true&sd=true)
+- [Vídeo](https://www.youtube.com/watch?v=9zppzAfso28&ab_channel=DaviSantana)
+
 ## ❔ Sobre
 
 > Esse projeto foi realizado para compor um trabalho de Oficina de Integração 1. Tal matéria está presente no curso de Engenharia de Software da UTFPR-CP.

@@ -1,13 +1,21 @@
 <h1>
-  <p>Projeto Dom Barbeiro</p>
+  <p>🪒 Projeto Dom Barbeiro</p>
 </h1>
 
 ## ✨ Seja bem-vindo!
+## ❔ Sobre
+
+> Esse projeto foi realizado para compor um trabalho de Oficina de Integração 1. Tal matéria está presente no curso de Engenharia de Software da UTFPR-CP.
+
+## 📈 Objetivos
 
 O `Dom Barbeiro` vem para mudar a realidade dessas barbearias, facilitando o gerenciamento de horários e finanças.<br>
-O problema a ser solucionado é facilitar a organização de barbearias. Por mais que existam opções de sistemas de gerenciamento no mercado de tecnologia, a grande maioria delas não são acessíveis para menores estabelecimentos e acabam por gerir seus serviços a partir de métodos arcaicos e lentos.<br>
-Dessa maneira, ficam cada vez mais deslocados mediante a concorrência e com pouca oportunidade de crescimento. O software tem o objetivo de auxiliar no gerenciamento, para que independente do tamanho, possuam o mesmo acesso e controle aos dados do seu negócio.<br>
-Sendo assim, o problema proposto a ser resolvido impacta diretamente os funcionários e proprietários do estabelecimento, pois não possuem um gerenciamento automatizado de seu negócio. 
+O projeto tem como objetivo facilitar e organizar  o sistema de gerenciamento de clientes da barbearia para ter um melhor controle e administração de seu tempo e dos seus faturamentos.<br>
+Ademais, o sistema vai ser desenvolvido para a melhorar a gestão do cadastro e o controle de agendamentos de serviços clientes, controle de suas finanças com  fluxos de caixas.<br><br>
+Objetivos específicos do sistema são: 
+- Gerenciar Serviços 
+- Gerenciar Finanças 
+- Gerenciar Dados do Clientes
 
 ## 🔨 Tecnologias e ferramentas
 
@@ -18,4 +26,4 @@ Sendo assim, o problema proposto a ser resolvido impacta diretamente os funcion�
 - Repositório: Github;
 - Gerenciamento de Projeto: Trello; 
 - Diagramas: Astah 8.5.0; 
-- Edição do documento: Google Docs; 
+- Edição do documento: Google Docs;

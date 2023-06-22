@@ -5,9 +5,9 @@
 
 ## ✨ Seja bem-vindo!
 
-O `Dom Barbeiro` vem para mudar a realidade dessas barbearias, facilitando o gerenciamento de horários e finanças.
-O problema a ser solucionado é facilitar a organização de barbearias. Por mais que existam opções de sistemas de gerenciamento no mercado de tecnologia, a grande maioria delas não são acessíveis para menores estabelecimentos e acabam por gerir seus serviços a partir de métodos arcaicos e lentos.
-Dessa maneira, ficam cada vez mais deslocados mediante a concorrência e com pouca oportunidade de crescimento. O software tem o objetivo de auxiliar no gerenciamento, para que independente do tamanho, possuam o mesmo acesso e controle aos dados do seu negócio.
+O `Dom Barbeiro` vem para mudar a realidade dessas barbearias, facilitando o gerenciamento de horários e finanças.<br>
+O problema a ser solucionado é facilitar a organização de barbearias. Por mais que existam opções de sistemas de gerenciamento no mercado de tecnologia, a grande maioria delas não são acessíveis para menores estabelecimentos e acabam por gerir seus serviços a partir de métodos arcaicos e lentos.<br>
+Dessa maneira, ficam cada vez mais deslocados mediante a concorrência e com pouca oportunidade de crescimento. O software tem o objetivo de auxiliar no gerenciamento, para que independente do tamanho, possuam o mesmo acesso e controle aos dados do seu negócio.<br>
 Sendo assim, o problema proposto a ser resolvido impacta diretamente os funcionários e proprietários do estabelecimento, pois não possuem um gerenciamento automatizado de seu negócio. 
 
 ## 🔨 Tecnologias e ferramentas
